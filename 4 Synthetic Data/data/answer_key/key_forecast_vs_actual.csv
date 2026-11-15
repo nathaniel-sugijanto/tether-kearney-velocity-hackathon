@@ -1,0 +1,7 @@
+plant,model,fy26_plan_units,fy26_actual_units,actual_vs_plan_pct,fy27_forecast_units,fy27_vs_fy26_actual_pct,purchased_material_usd_per_unit,fy27_forecast_purchased_material_spend_usd
+Dayton,BL-5,86160,72600,-0.1574,67180,-0.0747,13.027,875171.75
+Dayton,BL-12,109530,107870,-0.0152,111730,0.0358,15.856,1771645.04
+Dayton,BL-12P,60850,62010,0.0191,65720,0.0598,19.351,1271777.05
+El Paso,BL-12,85190,85170,-0.0002,85190,0.0002,16.74,1426094.42
+El Paso,BL-12P,67910,72620,0.0694,80320,0.106,20.506,1647007.58
+El Paso,BL-12T,14240,17740,0.2458,25540,0.4397,24.762,632417.26

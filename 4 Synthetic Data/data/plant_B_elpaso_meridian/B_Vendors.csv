@@ -1,0 +1,27 @@
+Vendor,Vendor Name,Type,St,Certifications,Capabilities / Notes,Status
+V-20036,Miami Valley Molding,Manufacturer,OH,ISO 9001; ISO 14001; NSF/ANSI 51,Injection molding 80-650 t; food-contact PP; tool maintenance,Approved
+V-20045,SUNBELT PLASTICS,Manufacturer,TX,ISO 9001; NSF/ANSI 51,Injection molding 120-450 t; food-contact PP,Approved
+V-20072,Tres Rios Molding,Manufacturer,TX,,Injection molding 90-300 t; no food-contact certification,Conditional (no ISO 9001)
+V-20092,"EMBERLINE HEATING ELEMENTS, INC.",Manufacturer,TN,ISO 9001; ISO 14001; UL,Tubular and cast-in heating elements; brazing,Approved
+V-20093,Hotwire Components,Manufacturer,TX,ISO 9001; UL,Heating elements; heater sub-assembly with thermostat and fuses,Approved
+V-20117,Thermotek Ctrls,Manufacturer,OH,ISO 9001; ISO 14001; UL; CSA,Bimetal thermostats; thermal fuses,Approved
+V-20142,Sunfuse Devices,Manufacturer,CA,ISO 9001; UL,Thermal fuses and cutoffs,Approved
+V-20151,Allied Ind. Supply,Distributor,IL,ISO 9001,"Distribution: fasteners, electrical components, MRO",Approved
+V-20163,Buckeye Wire & Cable,Manufacturer,OH,ISO 9001; UL,Power cords; wire harnesses; overmolding,Approved
+V-20189,Rio Grande Cable Assemblies,Manufacturer,TX,ISO 9001; UL,Power cords; wire harnesses,Approved
+V-20193,Lone Star Cordsets,Manufacturer,TX,,Power cords; UL file pending,Conditional (no ISO 9001)
+V-20205,Circuitline E.M.S.,Manufacturer,IL,ISO 9001; ISO 14001; UL; IPC-A-610,PCB assembly; switches and keypads sourcing; functional test,Approved
+V-20229,Paso Electronics Assembly,Manufacturer,TX,ISO 9001; UL,PCB assembly; box build,Approved
+V-20242,Crystal River Glass Works,Manufacturer,WV,ISO 9001; FDA,Borosilicate blow molding; handle assembly,Approved
+V-20244,Vidrio Norte Glass,Importer,TX,ISO 9001; FDA,Imported borosilicate carafes; ocean freight via Houston,Approved
+V-20259,SteelBrew Vacuumware,Importer,CA,ISO 9001; FDA,Imported stainless vacuum carafes,Approved
+V-20261,Stampwell Metal Prod.,Manufacturer,OH,ISO 9001,Progressive die stamping; non-stick coating,Approved
+V-20283,Mesa Metal Stamping,Manufacturer,TX,ISO 9001,Stamping; zinc plating outsourced,Approved
+V-20324,Gulf Rubber Products,Manufacturer,TX,ISO 9001; FDA,Silicone and rubber extrusion; die cutting,Approved
+V-20372,Border Fastener Supply,Distributor,TX,,Fastener distribution,Conditional (no ISO 9001)
+V-20399,Dayton Corrugated Co.,Manufacturer,OH,ISO 9001; FSC,Corrugated boxes; 4-color litho lamination; molded fiber,Approved
+V-20400,Southwest Box & Label,Manufacturer,TX,ISO 9001,Corrugated boxes; packaging kits,Approved
+V-20407,Printworks Label and Manual,Manufacturer,KY,ISO 9001; UL label printer,Manuals; rating labels,Approved
+V-20435,Freightline Logistics LLC,Service,IL,,"LTL, truckload and air freight",Approved
+V-20461,SafeMark Testing Laboratories,Service,IL,ISO 9001; ISO/IEC 17025,Electrical safety and food-contact testing,Approved
+V-20463,Precision Mold Service,Service,OH,,Injection mold repair and maintenance,Approved

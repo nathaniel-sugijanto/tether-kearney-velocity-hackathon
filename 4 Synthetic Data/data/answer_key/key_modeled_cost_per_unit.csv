@@ -1,0 +1,7 @@
+plant,model,units_built_12m,purchased_material_usd,labor_usd,overhead_usd,modeled_full_cost_usd,material_share_of_full_cost
+Dayton,BL-5,72600,13.027,2.12,3.18,18.327,0.711
+Dayton,BL-12,107870,15.856,2.32,3.48,21.656,0.732
+Dayton,BL-12P,62010,19.351,2.72,4.08,26.151,0.74
+El Paso,BL-12,85170,16.74,1.583,2.217,20.54,0.815
+El Paso,BL-12P,72620,20.506,1.9,2.66,25.066,0.818
+El Paso,BL-12T,17740,24.762,2.058,2.882,29.702,0.834

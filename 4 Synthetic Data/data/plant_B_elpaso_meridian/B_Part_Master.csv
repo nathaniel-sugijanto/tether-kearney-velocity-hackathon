@@ -1,0 +1,49 @@
+Part Number,Part Description,Class,Stock UM,Buy UM,Commodity,Manufacturer,Mfg Part #,Dwg,Rev,Material,Tol,GD&T,Std Cost,Active,Rating,Compliance,Dimensions
+PLS00262,BL12 PP Black hsg,Purchased,Each,Each,Plastics,,,EP-00262,1,Pp Copolymer Ul94 Hb,ISO 20457 TG6,,2.592,Y,,,see drawing
+PLS00279,BL12P PP Black hsg,Purchased,Each,Each,Plastics,,,EP-00279,1,Pp Copolymer Ul94 Hb,ISO 20457 TG6,,2.754,Y,,,
+PLS00296,BL12T PP Black hsg,Purchased,Each,Each,Plastics,,,EP-00296,1,Pp Copolymer Ul94 Hb,,,2.916,Y,,,see drawing
+PLS00317,12-Cup PP Black base plt,Purchased,Each,Each,Plastics,,,EP-00317,1,Pp Copolymer,ISO 20457 TG6,,0.8424,Y,,,180x230 mm
+PLS00339,12-Cup PP Clear water tank,Purchased,Each,Each,,,,EP-00339,2,Pp Clarified,ISO 20457 TG6,,1.296,Y,,NSF/ANSI 51 Food Contact,1.8 l
+PLS00346,12-Cup PP Black tank lid,Purchased,Each,Each,Plastics,,,EP-00346,3,,ISO 20457 TG6,,0.3888,Y,,NSF/ANSI 51 Food Contact,
+PLS00364,12-Cup PP Black filter bskt,Purchased,Each,Each,,,,EP-00364,3,Pp Copolymer,ISO 20457 TG6,,0.594,Y,,NSF/ANSI 51 Food Contact,#4 cone
+GLS00182,12-Cup Glass Black Handle carafe,Purchased,Each,Each,Glass,,,EP-00182,3,Borosilicate 3.3,,,2.3275,Y,,FDA Food Contact,1.8 l
+GLS00254,Carafe glass 12 cup w blk handle 1.8L,Purchased,Each,Each,Glass,,,,,Borosilicate,,,2.45,Y,,FDA Food Contact,1.8 l
+PLS00383,12-Cup PP Black One-Piece carafe lid,Purchased,Each,Each,,,,EP-00383,3,Pp Copolymer,,,0.2808,Y,,NSF/ANSI 51 Food Contact,
+MTL00368,12-Cup Steel Non-Stick warm plt,Purchased,Each,Each,Metal,,,EP-00368,1,Spcc 0.8 Mm,,,1.176,Y,,,dia 125 mm
+PKG00167,12-Cup Molded Fiber pulp tray,Purchased,Each,Each,,,,,,Recycled Fiber,,,0.286,Y,,,
+PLS00412,PP Black 9-Hole showerhead,Purchased,Each,Each,Plastics,,,EP-00412,3,Pp Copolymer,ISO 20457 TG6,,0.1944,Y,,NSF/ANSI 51 Food Contact,
+DRK00162,12-Cup Stainless Double Wall With Lid thermal carafe,Purchased,Each,Each,Drinkware,,SB-TC18,,,Ss 304,,,7.8,Y,,FDA Food Contact,1.8 l
+HTG00234,900W 120V Aluminum Tube U-Shape htg element,Purchased,Each,Each,Heating,,,EP-00234,1,Al 6063 / Nicr,FLATNESS 0.2,,2.2035,Y,900 W 120 V,UL Recognized,u 95x120 mm
+HTG00249,1000W 120V Aluminum Tube U-Shape htg element,Purchased,Each,Each,Heating,,,EP-00249,1,Al 6063 / Nicr,FLATNESS 0.2,,2.486,Y,1000 W 120 V,UL Recognized,u 95x120 mm
+THM00315,Bimetal 105C NC 10A t-stat,Purchased,Each,Each,Thermal,Thermotek,TS-105-NC,,,,,,0.3304,Y,"105 C OPEN, 10 A 250 V",UL Recognized,
+THM00339,216C 10A Axial thermal fuse,Purchased,Each,Each,Thermal,Sunfuse,SF216,,,,,,0.12,Y,"216 C, 10 A 250 V",UL Recognized,
+THM00346,229C 10A Axial thermal fuse,Purchased,Each,Each,Thermal,Sunfuse,SF229,,,,,,0.12,Y,"229 C, 10 A 250 V",UL Recognized,
+MTL00373,Steel ZP htr brkt,Purchased,Each,Each,,,,EP-00373,1,Spcc 1.0 Mm Zn,,,0.1568,Y,,,
+RBR00212,8mm Id 1.6mm Wall Translucent silicone tubing,Purchased,Meter,Foot,Rubber,,,,,Silicone 60 Shore A,,,0.7392,Y,,FDA 21 CFR 177.2600,id 8.0 wall 1.6 mm
+RBR00496,8mm Silicone Duckbill chk valve,Purchased,Each,Each,Rubber,,,,,,,,0.1008,Y,,,8 mm
+RBR00241,8mm Silicone Duckbill chk valve,Purchased,Each,Each,Rubber,,,,,Silicone 50 Shore A,,,0.09,N,,,
+FST00267,Spring 12mm ZP hose clamp,Purchased,Each,Each,,,,,,Spring Steel Zn,,,0.0244,Y,,,12 mm
+CRD00300,2-Prong SPT-2 18AWG 1.0M Black pwr cord,Purchased,Each,Each,Cords,,,EP-00300,3,,,,1.067,Y,10 A 125 V,UL Listed,1.0 m
+ELC00374,SPST 16A Red LED rocker sw,Purchased,Each,Each,Electronics,Kontakt,KR-16-RL,,,,,,0.3924,Y,16 A 125 V,UL Recognized,cutout 19x13 mm
+ELC00382,Programmable LCD Clock Timer ctrl board,Purchased,Each,Each,,,,EP-00382,3,,,,3.379,Y,120 V,UL Recognized; RoHS,82x46 mm
+ELC00400,5-Button Adhesive keypad,Purchased,Each,Each,Electronics,,,EP-00400,1,,,,0.3815,Y,,,
+CRD00305,Switch Models 5-Wire harness,Purchased,Each,Each,Cords,,,EP-00305,2,,,,0.418,Y,105 C WIRE,UL Recognized,"5 leads, 280 mm"
+CRD00322,Programmable 8-Wire harness,Purchased,Each,Each,Cords,,,EP-00322,3,,,,0.605,Y,105 C WIRE,UL Recognized,"8 leads, 320 mm"
+CRD00338,Programmable 7-Wire No Plate Lead harness,Purchased,Each,Each,Cords,,,EP-00338,3,,,,0.583,Y,105 C WIRE,UL Recognized,"7 leads, 320 mm"
+FST00276,M3X10 ZP PH tapping screw,Purchased,Each,Each,Fasteners,,,,,Steel Zn,,,0.0079,Y,,,m3 x 10
+FST00301,M4X12 ZP PH tapping screw,Purchased,Each,Each,Fasteners,,,,,Steel Zn,,,0.011,Y,,,m4 x 12
+RBR00261,12.5mm Black Adhesive rubber foot,Purchased,Each,Each,Rubber,,,,,Sbr 60 Shore A,,,0.0176,Y,,,dia 12.5 mm
+PKG00190,BL12 4-Color E-Flute gift box,Purchased,Each,Each,Packaging,,,EP-00190,2,E-Flute Corrugated,,,0.726,Y,,,
+PKG00216,BL12P 4-Color E-Flute gift box,Purchased,Each,Each,Packaging,,,EP-00216,1,E-Flute Corrugated,,,0.77,Y,,,
+PKG00244,BL12T 4-Color E-Flute gift box,Purchased,Each,Each,Packaging,,,EP-00244,3,,,,0.814,Y,,,
+PRT00165,Switch Models EN ES FR manual,Purchased,Each,Each,Print,,,,,,,,0.0728,Y,,,
+PRT00185,Programmable EN ES FR manual,Purchased,Each,Each,Print,,,,,,,,0.0936,Y,,,
+PRT00187,Silver PET UL Mark rating label,Purchased,Each,Each,Print,,,,,,,,0.0125,Y,,,
+PKG00253,LDPE 400X500mm polybag,Purchased,Each,Each,Packaging,,,,,Ldpe 40 Micron,,,0.022,Y,,,
+PKG00260,Holds 4 12-Cup ECT-29 master ctn,Purchased,Each,Each,Packaging,,,,,C-Flute Ect-29,,,1.056,Y,,,490x400x370 mm
+PKG00278,BL12T Box+Tray+Manual+Bag pkg kit,Purchased,Each,Each,,,,,,,,,1.0878,Y,,,
+ASM00139,900W With Thermostat And Fuses heater assy,Purchased,Each,Each,Assembly,,,EP-00139,2,,,,3.294,Y,,,
+ASM00168,1000W With Thermostat And Fuses heater assy,Purchased,Each,Each,,,,EP-00168,2,,,,3.574,Y,,,
+FGS00387,BL12 12-Cup Classic coffee maker,Finished,Each,Each,Finished,,,,,,,,,Y,,,
+FGS00391,BL12P 12-Cup Programmable coffee maker,Finished,Each,Each,,,,,,,,,,Y,,,
+FGS00410,BL12T 12-Cup Thermal coffee maker,Finished,Each,Each,,,,,,,,,,Y,,,

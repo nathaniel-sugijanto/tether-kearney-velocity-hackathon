@@ -1,0 +1,45 @@
+{
+  "_comment": "One block per site. Each table lists the client's file and maps the client's column names to the tool's common names. Adding a new ERP means adding a block here, not changing code.",
+  "sites": {
+    "Dayton": {
+      "folder": "plant_A_dayton_atlas",
+      "date_format": "%Y-%m-%d",
+      "tables": {
+        "parts": {"file": "A_item_master.csv", "columns": {"item": "ITEM_NO", "descr": "ITEM_DESC", "item_type": "ITEM_TYPE", "base_uom": "BASE_UOM", "purch_uom": "PURCH_UOM", "commodity": "COMMODITY_CODE", "mfr": "MFR_NAME", "mpn": "MFR_PART_NO", "material": "MATERIAL_SPEC", "tolerance": "TOLERANCE_CLASS", "std_cost": "STD_COST", "status": "STATUS", "superseded_by": "SUPERSEDED_BY", "rating": "RATING", "compliance": "COMPLIANCE", "dimensions": "DIMENSIONS"}},
+        "bom": {"file": "A_bom_parent_child.csv", "layout": "parent_child", "columns": {"parent": "PARENT_ITEM", "child": "COMPONENT_ITEM", "qty": "QTY_PER", "uom": "COMP_UOM", "eff_from": "EFF_FROM", "eff_to": "EFF_TO", "source": "BOM_USAGE"}},
+        "suppliers": {"file": "A_supplier_master.csv", "columns": {"supplier_id": "SUPPLIER_ID", "name": "SUPPLIER_NAME", "supplier_type": "SUPPLIER_TYPE", "state": "STATE", "iso9001": "ISO_9001", "certs": "OTHER_CERTS", "capabilities": "CAPABILITIES", "status": "APPROVAL_STATUS"}},
+        "item_supplier": {"file": "A_purchasing_info_records.csv", "columns": {"item": "ITEM_NO", "supplier_id": "SUPPLIER_ID", "supplier_item": "SUPPLIER_ITEM", "order_uom": "ORDER_UOM", "lead_days": "PLANNED_LEAD_DAYS", "moq": "MIN_ORDER_QTY"}},
+        "quotes": {"file": "A_rfq_quotes.csv", "columns": {"rfq": "RFQ_NO", "quote_date": "QUOTE_DATE", "item": "ITEM_NO", "supplier_id": "SUPPLIER_ID", "quote_no": "QUOTE_NO", "price": "QUOTED_UNIT_PRICE", "lead_days": "LEAD_TIME_DAYS", "moq": "MOQ", "annual_qty": "EST_ANNUAL_QTY", "awarded": "AWARDED"}},
+        "po_lines": {"file": "A_po_lines.csv", "columns": {"po_number": "PO_NUMBER", "po_line": "PO_LINE", "po_date": "PO_DATE", "supplier_id": "SUPPLIER_ID", "item_raw": "ITEM_NO", "supplier_item": "SUPPLIER_ITEM", "line_text": "LINE_TEXT", "qty": "ORDER_QTY", "uom": "ORDER_UOM", "price": "NET_PRICE", "amount": "LINE_AMOUNT", "cost_center": "COST_CENTER", "ship_to": "SHIP_TO_LOC", "quote_ref": "RFQ_QUOTE_REF"}},
+        "invoice_lines": {"file": "A_invoice_lines.csv", "columns": {"invoice_no": "INVOICE_NO", "inv_line": "INV_LINE", "inv_date": "INVOICE_DATE", "supplier_id": "SUPPLIER_ID", "po_number": "PO_NUMBER", "po_line": "PO_LINE", "item_raw": "ITEM_NO", "line_text": "LINE_TEXT", "qty": "INV_QTY", "uom": "UOM", "price": "UNIT_PRICE", "amount": "LINE_AMOUNT", "line_type": "LINE_TYPE"}},
+        "supersessions": {"file": "A_supersessions.csv", "columns": {"old_item": "OLD_ITEM", "new_item": "NEW_ITEM", "eff_date": "EFFECTIVE_DATE", "reason": "REASON"}},
+        "uom_conv": {"file": "A_uom_conversions.csv", "columns": {"item": "ITEM_NO", "alt_uom": "ALT_UOM", "base_uom": "BASE_UOM", "factor": "BASE_QTY_PER_ALT_UOM"}},
+        "receipts": {"file": "A_goods_receipts.csv", "columns": {"doc": "GR_DOC", "rec_date": "GR_DATE", "po_number": "PO_NUMBER", "po_line": "PO_LINE", "item_raw": "ITEM_NO", "qty": "RECEIVED_QTY", "uom": "UOM", "promised": "PROMISED_DATE"}},
+        "open_pos": {"file": "A_open_po_lines.csv", "columns": {"po_number": "PO_NUMBER", "po_line": "PO_LINE", "po_date": "PO_DATE", "supplier_id": "SUPPLIER_ID", "item_raw": "ITEM_NO", "line_text": "LINE_TEXT", "open_qty": "OPEN_QTY", "uom": "ORDER_UOM", "promised": "PROMISED_DATE", "confirmed": "CONFIRMED_DATE"}}
+      },
+      "purpose_rules": {"cost_center": {"PROD-410": "PRODUCTION", "SVC-900": "SPARE", "WTY-950": "WARRANTY", "OH-700": "NON_PRODUCT"}, "service_ship_to": ["SDC-01"]}
+    },
+    "El Paso": {
+      "folder": "plant_B_elpaso_meridian",
+      "date_format": "%m/%d/%Y",
+      "tables": {
+        "parts": {"file": "B_Part_Master.csv", "columns": {"item": "Part Number", "descr": "Part Description", "item_type": "Class", "base_uom": "Stock UM", "purch_uom": "Buy UM", "commodity": "Commodity", "mfr": "Manufacturer", "mpn": "Mfg Part #", "material": "Material", "tolerance": "Tol", "std_cost": "Std Cost", "status": "Active", "rating": "Rating", "compliance": "Compliance", "dimensions": "Dimensions"}},
+        "bom": {"file": "B_Indented_BOM.csv", "layout": "indented", "columns": {"top": "Top Model", "level": "Lvl", "child": "Part (indented)", "qty": "Qty Per Parent", "uom": "UM", "source": "Source", "eff_from": "Eff Date"}},
+        "suppliers": {"file": "B_Vendors.csv", "columns": {"supplier_id": "Vendor", "name": "Vendor Name", "supplier_type": "Type", "state": "St", "certs": "Certifications", "capabilities": "Capabilities / Notes", "status": "Status"}},
+        "item_supplier": {"file": "B_Vendor_Part_Xref.csv", "columns": {"item": "Part Number", "supplier_id": "Vendor", "supplier_item": "Vendor Part", "order_uom": "Buy UM", "lead_days": "Lead Time (days)", "moq": "MOQ"}},
+        "quotes": {"file": "B_Quotes.csv", "columns": {"rfq": "RFQ", "quote_date": "Quoted On", "item": "Part", "supplier_id": "Vendor", "quote_no": "Quote #", "price": "Price Each", "lead_weeks": "Lead Time (wks)", "moq": "Min Order", "annual_qty": "Annual Usage Est", "awarded": "Award"}},
+        "po_lines": {"file": "B_PO_Detail.csv", "columns": {"po_number": "PO Number", "po_line": "Ln", "po_date": "Order Date", "supplier_id": "Vendor", "item_raw": "Part Number", "supplier_item": "Vendor Part", "line_text": "Line Description", "qty": "Order Qty", "uom": "UM", "price": "Unit Price", "per": "Per", "amount": "Ext Amount", "cost_center": "GL Account", "ship_to": "Deliver To", "quote_ref": "Quote Ref"}},
+        "invoice_lines": {"file": "B_AP_Invoice_Lines.csv", "columns": {"invoice_no": "Invoice #", "inv_line": "Inv Line", "inv_date": "Inv Date", "supplier_id": "Vendor", "po_ref": "PO Ref", "item_raw": "Part", "line_text": "Description", "qty": "Qty", "uom": "UM", "price": "Price", "per": "Per", "amount": "Amount", "line_type": "Type"}},
+        "uom_conv": {"file": "B_UM_Conversions.csv", "columns": {"alt_uom": "From UM", "base_uom": "To UM", "factor": "Factor"}},
+        "receipts": {"file": "B_Receipts.csv", "columns": {"doc": "Receiver #", "rec_date": "Recd Date", "po_number": "PO Number", "po_line": "Ln", "item_raw": "Part Number", "qty": "Qty Recd", "uom": "UM", "promised": "Due Date"}},
+        "open_pos": {"file": "B_Open_PO_Report.csv", "columns": {"po_number": "PO Number", "po_line": "Ln", "po_date": "Order Date", "supplier_id": "Vendor", "item_raw": "Part Number", "line_text": "Line Description", "open_qty": "Open Qty", "uom": "UM", "promised": "Due Date", "confirmed": "Vendor Confirmed"}},
+        "make_buy_changes": {"file": "B_Make_Buy_Changes.csv", "columns": {"item": "Part Number", "change": "Change", "eff_date": "Effective", "supplier_id": "Vendor", "note": "Note"}}
+      },
+      "purpose_rules": {"cost_center": {"5000": "PRODUCTION", "5400": "SPARE", "6100": "WARRANTY", "7200": "NON_PRODUCT"}, "service_ship_to": ["ELP SERVICE CAGE"]}
+    }
+  },
+  "shared_folder": "shared",
+  "platform": {"family_name": "12-cup BrewLine", "models": ["BL-12", "BL-12P", "BL-12T"]},
+  "uom_aliases": {"EACH": "EA", "EA": "EA", "METER": "M", "M": "M", "FOOT": "FT", "FT": "FT", "BX": "BX", "BOX": "BX", "RL": "RL", "ROLL": "RL"},
+  "item_type_aliases": {"BUY": "BUY", "PURCHASED": "BUY", "MAKE": "MAKE", "MANUFACTURED": "MAKE", "FG": "FG", "FINISHED": "FG", "SERVICE": "SERVICE"}
+}

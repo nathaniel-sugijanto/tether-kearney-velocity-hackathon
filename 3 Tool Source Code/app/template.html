@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tether: BOM to spend linkage</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f4f3f0; --surface:#fcfcfb; --line:#e3e1db; --line-strong:#cfccc4;
+  --ink:#0b0b0b; --ink2:#52514e; --ink3:#85837d;
+  --accent:#5b2fc9; --accent-soft:#efeafb;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --bar:#2a78d6; --bar-muted:#b9cfea;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --good-bg:#e9f6e9; --warn-bg:#fdf3d9; --crit-bg:#fbe9e9; --neutral-bg:#eeedea;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+nav{background:#17161a;color:#eceaf2;padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.brand{font-size:20px;font-weight:700;letter-spacing:.2px;padding:0 8px}
+.brand span{color:#b79cff}
+.tagline{font-size:12px;color:#a5a1b3;padding:2px 8px 18px}
+nav button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;color:#d9d6e3;padding:9px 10px;border-radius:8px}
+nav button .n{font-size:11px;color:#8e89a0;width:12px}
+nav button small{display:block;font-size:11.5px;color:#8e89a0}
+nav button:hover{background:#25232b}
+nav button.on{background:#322a4d;color:#fff}
+nav button.on small,nav button.on .n{color:#c9bdf0}
+nav .sep{border-top:1px solid #2e2c36;margin:10px 4px}
+nav .foot{margin-top:auto;font-size:11.5px;color:#8e89a0;padding:8px;line-height:1.4}
+main{padding:22px 28px 60px;min-width:0}
+.demo-note{background:var(--warn-bg);border:1px solid #f0dca0;border-radius:8px;padding:7px 12px;font-size:12.5px;color:#5a4a12;margin-bottom:16px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--ink2);margin:0 0 18px;max-width:880px}
+h2{font-size:15px;margin:0 0 4px}
+.h2sub{color:var(--ink2);font-size:13px;margin:0 0 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.tile .k{font-size:12.5px;color:var(--ink2)}
+.tile .v{font-size:26px;font-weight:650;letter-spacing:-.3px;margin:2px 0}
+.tile .d{font-size:12px;color:var(--ink2)}
+.tile.hero{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{font-weight:600;text-align:left;color:var(--ink2);font-size:12px;border-bottom:1px solid var(--line-strong);padding:6px 8px;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.click{cursor:pointer}
+tr.click:hover td{background:#f6f4fb}
+.muted{color:var(--ink2)} .small{font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:550;white-space:nowrap;background:var(--neutral-bg);color:var(--ink)}
+.chip.good{background:var(--good-bg);color:#0b5c0b} .chip.warn{background:var(--warn-bg);color:#6b5200}
+.chip.crit{background:var(--crit-bg);color:#8f1f1f} .chip.acc{background:var(--accent-soft);color:#3f1f96}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.grid2{display:grid;grid-template-columns:minmax(360px,5fr) minmax(420px,7fr);gap:16px;align-items:start}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.filters select,.filters input{font:inherit;padding:6px 9px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface)}
+.btn{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:6px 12px}
+.btn:hover{background:#f1efea}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabs{display:flex;gap:6px;margin-bottom:14px}
+.opp{border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px;background:var(--surface);cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 12px}
+.opp:hover{border-color:var(--line-strong)}
+.opp.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:#faf8ff}
+.opp .t{font-weight:600}
+.opp .amt{font-weight:650;font-variant-numeric:tabular-nums;text-align:right}
+.opp .m{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--ink2)}
+.opp.rejected{opacity:.5}
+.detail,.opplist{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
+.opplist{padding-right:4px}
+.action{background:var(--accent-soft);border-radius:8px;padding:10px 12px;margin:10px 0}
+.caution{background:var(--warn-bg);border:1px solid #f0dca0;border-radius:8px;padding:10px 12px;margin:10px 0}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:13px;margin:8px 0}
+.kv div:nth-child(odd){color:var(--ink2)}
+.bars{display:grid;gap:7px;margin:8px 0}
+.barrow{display:grid;grid-template-columns:minmax(150px,240px) 1fr 86px;gap:10px;align-items:center;font-size:13px}
+.barrow .track{height:16px;position:relative}
+.barrow .fill{height:16px;background:var(--bar);border-radius:0 4px 4px 0;min-width:2px}
+.barrow .fill.muted{background:var(--bar-muted)}
+.barrow .val{text-align:right;font-variant-numeric:tabular-nums}
+.barrow:hover .fill{filter:brightness(.92)}
+.stack{display:flex;height:22px;gap:2px}
+.stack div{height:22px}
+.stack div:last-child{border-radius:0 4px 4px 0}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--ink2);margin:6px 0 10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.diff{background:#fff2c9}
+details{margin-top:10px} summary{cursor:pointer;color:var(--accent);font-weight:550}
+.big-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.big-compare .tile .v{font-size:38px}
+.progress{height:10px;background:var(--neutral-bg);border-radius:5px;overflow:hidden;margin-top:8px}
+.progress div{height:10px;background:var(--bar)}
+.progress.plain div{background:var(--bar-muted)}
+#tip{position:fixed;pointer-events:none;background:#17161a;color:#fff;padding:6px 9px;border-radius:6px;font-size:12px;max-width:320px;z-index:20;display:none;line-height:1.35}
+.notice{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:var(--surface)}
+.notice h3{margin:0 0 4px;font-size:14px}
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12.5px;margin:6px 0}
+.flow b{font-weight:600}
+.arrow{color:var(--ink3)}
+.flow.step{flex-wrap:nowrap;align-items:flex-start;font-size:13.5px}
+.right{text-align:right}
+td.ctr,th.ctr{text-align:center}
+td.ref,th.ref{background:#f3f2ee}
+.vchip{display:inline-block;min-width:22px;padding:1px 6px;border-radius:5px;font-weight:600;font-size:12px;border:1px solid var(--line-strong)}
+.vdot{color:var(--ink2);font-size:13px}
+tr.grp td{background:#f6f4fb;border-top:1px solid var(--line-strong);padding-top:9px}
+.matrix td{vertical-align:middle}
+.nowrap{white-space:nowrap}
+@media (max-width:1100px){.grid2{grid-template-columns:1fr}.detail,.opplist{position:static;max-height:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav>
+  <div class="brand">Tether<span>.</span></div>
+  <div class="tagline">BOMs tied to spend, sized into savings</div>
+  <button data-page="start"><span class="n">★</span><span>Start here<small>The answer on one screen</small></span></button>
+  <button data-page="load"><span class="n">0</span><span>Data loaded<small>Files and column mapping</small></span></button>
+  <button data-page="health"><span class="n">1</span><span>Linkage health<small>Can I trust it?</small></span></button>
+  <button data-page="cost"><span class="n">2</span><span>Product cost<small>What does each product cost?</small></span></button>
+  <button data-page="opps"><span class="n">3</span><span>Opportunities<small>Where is the money?</small></span></button>
+  <button data-page="watch"><span class="n">4</span><span>Watchlist<small>What needs attention now?</small></span></button>
+  <button data-page="platform"><span class="n">5</span><span>Platform view<small>What is common, what is a module?</small></span></button>
+  <div class="sep"></div>
+  <button data-page="score"><span class="n">✓</span><span>Test results<small>Scored against the answer key</small></span></button>
+  <div class="foot" id="foot"></div>
+</nav>
+<main>
+  <div class="demo-note">Synthetic demo data. Larkfield Home Appliances, its suppliers, parts and prices are invented. No Kearney or client data is used.</div>
+  <div id="page"></div>
+</main>
+</div>
+<div id="tip"></div>
+<script>
+const DATA = /*__DATA__*/null;
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const usd = (v, d=0) => v == null ? '–' : '$' + Number(v).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+const usdk = v => v == null ? '–' : Math.abs(v) >= 1e6 ? '$' + (v/1e6).toFixed(2) + 'M' : Math.abs(v) >= 1e4 ? '$' + Math.round(v/1e3) + 'k' : usd(v);
+const num = (v, d=0) => v == null ? '–' : Number(v).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+const pct = (v, d=1) => v == null ? '–' : (v*100).toFixed(d) + '%';
+const price = v => v == null ? '–' : '$' + (v < 0.1 ? v.toFixed(5) : v < 10 ? v.toFixed(4) : v.toFixed(2));
+const tipEl = $('#tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest('[data-tip]');
+  if (!t) { tipEl.style.display = 'none'; return; }
+  tipEl.innerHTML = t.dataset.tip; tipEl.style.display = 'block';
+  tipEl.style.left = Math.min(e.clientX + 14, innerWidth - 340) + 'px'; tipEl.style.top = (e.clientY + 14) + 'px';
+});
+
+// ---- decisions made in the session (kept in the browser) ---------------------------------
+const store = { get(k, d){ try { return JSON.parse(localStorage.getItem('tether.' + k)) ?? d } catch { return d } },
+                set(k, v){ try { localStorage.setItem('tether.' + k, JSON.stringify(v)) } catch {} } };
+let decisions = store.get('decisions', {});      // opp_id -> accepted | rejected | review
+let linkDecisions = store.get('links', {});      // review-queue key -> accepted | rejected
+const state = { page: 'start', opp: null, type: 'ALL', ready: 'ALL', q: '', tab: 'list', product: 0 };
+
+// ---- small building blocks ----------------------------------------------------------------
+const tile = (k, v, d, hero) => `<div class="tile${hero ? ' hero' : ''}"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d || ''}</div></div>`;
+const chip = (text, cls='') => `<span class="chip ${cls}">${text}</span>`;
+function barList(rows, max, fmt, cols) {   // rows: {label, value, muted, tip, note}
+  return `<div class="bars">` + rows.map(r => `<div class="barrow"${cols ? ` style="grid-template-columns:${cols}"` : ''} data-tip="${esc(r.tip || '')}">
+    <div>${r.label}${r.note ? ' ' + r.note : ''}</div>
+    <div class="track"><div class="fill${r.muted ? ' muted' : ''}" style="width:${Math.max(0.5, 100 * r.value / max)}%"></div></div>
+    <div class="val">${fmt(r.value)}</div></div>`).join('') + `</div>`;
+}
+function tableOf(cols, rows, opts={}) {   // cols: [{h, f, num}]
+  return `<table><thead><tr>${cols.map(c => `<th class="${c.num ? 'num' : ''}">${c.h}</th>`).join('')}</tr></thead><tbody>` +
+    rows.map((r, i) => `<tr${opts.row ? ' ' + opts.row(r, i) : ''}>${cols.map(c => `<td class="${c.num ? 'num' : ''}">${c.f(r, i)}</td>`).join('')}</tr>`).join('') +
+    `</tbody></table>`;
+}
+
+// =============================================================================================
+// Start here: the answer on one screen
+// =============================================================================================
+function pageStart() {
+  const h = DATA.health, m = DATA.meta, w = DATA.watch, P = DATA.platform, s = DATA.scorecard, t = oppTotals();
+  const live = DATA.opportunities.filter(o => decisions[o.opp_id] !== 'rejected');
+  const byType = ty => live.filter(o => o.opp_type === ty), sum = a => a.reduce((x, o) => x + o.saving, 0);
+  const pa = byType('PRICE_ALIGNMENT'), ql = byType('QUOTE_LEAKAGE'), cs = byType('CLOSE_SPEC'), si = byType('SUPPLIER_INCREASE');
+  const reviewLines = h.review_queue.reduce((a, r) => a + r.lines, 0), unresolvedLines = h.unresolved_lines.length;
+  const human = reviewLines + unresolvedLines, total = t.ready + t.review;
+  const scored = s && !s.partial, wrong = scored ? s.po_lines.wrong_part + s.invoice_lines.wrong_part : null;
+  const open = w.notices.filter(n => n.is_open), exposed = open.reduce((a, n) => a + n.spend_exposed, 0), late = w.orders.filter(o => o.days_slip >= 14).length;
+  const made = P.make_buy.find(r => r.how === 'MADE'), bought = made && P.make_buy.find(r => r.how === 'BOUGHT' && r.model === made.model);
+  const mbUnits = made ? DATA.products.products.filter(p => p.site === made.site && P.make_buy.some(r => r.how === 'MADE' && r.model === p.model)).reduce((a, p) => a + p.units, 0) : 0;
+  const apart = DATA.families.reduce((a, f) => a + f.pairs.filter(p => p.relation === 'DO_NOT_MERGE').length, 0);
+  const big = (k, v, d, hero) => `<div class="tile${hero ? ' hero' : ''}"><div class="k">${k}</div><div class="v" style="font-size:38px">${v}</div><div class="d" style="font-size:13px">${d}</div></div>`;
+  const top = a => a.length ? `<div class="muted small">Largest: ${esc(a[0].title)} (${usd(a[0].saving)})</div>` : '';
+  const rowsA = [
+    pa.length && {who:'Procurement', what:`Move volume to, or negotiate down to, the best qualified price on ${pa.length} parts bought at different prices across suppliers and plants.`, ex: top(pa), worth: usd(sum(pa)), st: chip('✓ Ready to act','good'), go:'opps:PRICE_ALIGNMENT'},
+    ql.length && {who:'Procurement and accounts payable', what:`Claim back invoices priced above the awarded quote on ${ql.length} parts, and correct the PO prices.`, ex: top(ql), worth: usd(sum(ql)), st: chip('✓ Ready to act','good'), go:'opps:QUOTE_LEAKAGE'},
+    cs.length && {who:'Engineering', what:`Approve or reject ${cs.length} near-identical parts as one standard part.${P.summary.core_review ? ` This also lifts the common core of the ${esc(P.family.name)} family from ${P.summary.core} to ${P.summary.core + P.summary.core_review} jobs.` : ''}`, ex: top(cs), worth: usd(sum(cs)), st: chip('? Needs review','warn'), go:'opps:CLOSE_SPEC'},
+    si.length && {who:'Contracts', what:`Check whether the across-the-board price increase from ${si.length} suppliers was agreed. If not, claim it back.`, ex: top(si), worth: usd(sum(si)), st: chip('? Needs review','warn'), go:'opps:SUPPLIER_INCREASE'},
+    open.length && {who:'Supply chain', what:`Act on ${open.length} supplier change notices that nobody completed. ${late} open orders are already confirmed two or more weeks late.`, ex:`<div class="muted small">${open.filter(n => n.not_told.length).length} notices never reached the other plant that buys the same part</div>`, worth:`${usdk(exposed)} <div class="muted small">spend exposed</div>`, st: chip('! Risk, not a saving','warn'), go:'watch'},
+    made && bought && {who:'Finance', what:`Decide make or buy on the heater assembly. On material alone making looks cheaper; on full cost buying is ${usd(made.full - bought.full, 2)} per unit cheaper.`, ex:'', worth:`${usd((made.full - bought.full) * mbUnits)} <div class="muted small">not counted</div>`, st: chip('Open question','acc'), go:'platform'},
+  ].filter(Boolean);
+  const types = [['Same part, different prices', sum(pa), 'Ready'], ['Invoiced above quote', sum(ql), 'Ready'], ['Across-the-board increase', sum(si), 'Review'], ['Near-identical parts', sum(cs), 'Review']].filter(x => x[1] > 0);
+  const mbYear = made && bought ? (made.full - bought.full) * mbUnits : 0;
+  return `<h1 style="font-size:26px;max-width:900px;line-height:1.25">How much money is on the table, and how much of it is safe to promise.</h1>
+  <p class="sub">Tether reads the exports a client already has and sorts every saving into ready to act, needs review, or not counted. Each dollar traces to its invoices, and look-alike savings that are not safe are refused. Built for a consulting team's first week, before any platform is bought.</p>
+  <div class="tiles" style="grid-template-columns:repeat(4,1fr)">
+    ${big('Safe to promise: ready to act', usd(t.ready), `<b>${t.nReady} savings</b> that passed every check the tool runs, such as same part confirmed, supplier qualified and real volume.`, true)}
+    ${big('Needs review before it counts', usd(t.review), `<b>${t.nReview} savings</b> waiting on an engineering or contract check.${mbYear ? ` A further ${usd(mbYear)} make-or-buy question is kept out of the total.` : ''}`)}
+    ${scored ? big('Lines tied to the wrong part', wrong, `of <b>${num(s.po_lines.lines + s.invoice_lines.lines)}</b> PO and invoice lines, scored against our answer key. It found ${usd(s.money.consolidation_savings.found)} of the ${usd(s.money.consolidation_savings.planted)} planted in the data.`)
+             : big('Spend tied to a part', pct(h.tool_share), `against ${pct(h.plain_share)} for a plain part-number match. Every link shows its reason and confidence.`)}
+    ${big('Cost of waiting, per week', usd(t.ready / 52), `The ready items alone, for every week the tie takes by hand. Here a person checks <b>${human} of ${num(m.invoice_lines)}</b> invoice lines and the tool does the rest in seconds.`)}
+  </div>
+  <div class="grid2" style="grid-template-columns:minmax(520px,8fr) minmax(340px,4fr)">
+    <div class="card"><h2>What to do on Monday, by owner</h2><p class="h2sub">The output is a work list, not a report. Click a row to see the evidence behind it.</p>
+      <table><thead><tr><th>Who</th><th>What to do</th><th class="num">Worth</th><th>Status</th></tr></thead><tbody>
+      ${rowsA.map(r => `<tr class="click" data-goto="${r.go}"><td><b>${r.who}</b></td><td>${r.what}${r.ex}</td><td class="num"><b>${r.worth}</b></td><td>${r.st}</td></tr>`).join('')}
+      </tbody></table>
+    </div>
+    <div>
+      <div class="card"><h2>Where the ${usd(total)} comes from</h2>
+        ${barList(types.map(x => ({label: x[0], value: x[1], muted: x[2] === 'Review', tip: `${x[0]}<br>${usd(x[1])} · ${x[2] === 'Ready' ? 'ready to act' : 'needs review'}`})), Math.max(...types.map(x => x[1])), usd, '170px 1fr 76px')}
+        <div class="muted small">Lighter bars need an engineering or contract review before they count.</div>
+      </div>
+      <div class="card"><h2>Why believe it</h2>
+        <div class="flow step">${chip('✓','good')} <span><b>${pct(h.tool_share)}</b> of spend tied to a part, against ${pct(h.plain_share)} for a plain part-number match.</span></div>
+        <div class="flow step">${chip('✓','good')} <span>Every link carries its reason and confidence, and every saving opens to its invoice lines.</span></div>
+        <div class="flow step">${chip('✕','crit')} <span><b>It says no.</b> ${apart} look-alike pairs are kept apart because they differ on wattage, trip temperature or wire count.</span></div>
+        <div class="flow step">${chip('✕','crit')} <span>${usdk(w.unqualified_total)} of spend sits with suppliers that fail a required check. The cheapest price is never the target unless the supplier qualifies.</span></div>
+        <div class="flow step">${chip('?','warn')} <span>${usdk(h.unresolved)} could not be identified. It is shown, not guessed.</span></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// =============================================================================================
+// Page 0: data loaded
+// =============================================================================================
+function pageLoad() {
+  const m = DATA.meta;
+  const bySite = {};
+  m.files.forEach(f => (bySite[f.site] ??= []).push(f));
+  return `<h1>Data loaded</h1>
+  <p class="sub">The tool reads plain exports from each plant. A mapping file says which of the client's columns feeds which common field, so a new ERP needs a new mapping, not new code. No system change is needed at the client.</p>
+  <div class="tiles">
+    ${tile('Plants', m.sites.length, m.sites.join(' and '))}
+    ${tile('Files read', m.files.length, 'CSV exports, two different layouts')}
+    ${tile('PO lines', num(m.po_lines), 'and ' + num(m.invoice_lines) + ' invoice lines')}
+    ${tile('Invoiced spend', usdk(m.total_spend), m.period)}
+    ${tile('Run time', (DATA.scorecard?.build_seconds ?? 4) + ' s', 'from raw files to this dashboard')}
+  </div>
+  <div class="card"><h2>Same information, two layouts</h2>
+  <p class="h2sub">Examples of how the two plants name the same field. The mapping is one file a consultant fills in on day one.</p>
+  ${tableOf([{h:'Common field', f:r=>`<b>${r[0]}</b>`},{h:'Dayton (Atlas)', f:r=>r[1]},{h:'El Paso (Meridian)', f:r=>r[2]}], [
+    ['Part number','ITEM_NO, e.g. 10-1085-00','Part Number, e.g. PLS00262'],
+    ['Description','HOUSING, BL-12, PP, BLACK','BL12 PP Black hsg'],
+    ['Order date','2026-03-14','03/14/2026'],
+    ['Price','NET_PRICE per order unit (box of 1,000)','Unit Price with a separate "Per" column (per 1,000)'],
+    ['Bill of materials','Parent and component rows','Indented list by level'],
+    ['Purpose of the spend','COST_CENTER (PROD-410, SVC-900, WTY-950)','GL Account (5000, 5400, 6100)'],
+    ['Supplier','200186 MIAMI VALLEY MOLDING','V-20036 Miami Valley Molding']])}</div>
+  ${Object.entries(bySite).map(([site, fs]) => `<div class="card"><h2>${site === 'shared' ? 'Shared files' : site}</h2>
+    ${tableOf([{h:'File', f:r=>esc(r.file)},{h:'Loaded as', f:r=>esc(r.table_name.replace('sh_',''))},{h:'Rows', num:1, f:r=>num(r.rows)}], fs)}</div>`).join('')}`;
+}
+
+// =============================================================================================
+// Page 1: linkage health
+// =============================================================================================
+function pageHealth() {
+  const h = DATA.health, total = DATA.meta.total_spend;
+  const exact = h.by_method.find(m => m.method === 'EXACT'), rest = h.by_method.filter(m => m.method !== 'EXACT');
+  const maxM = Math.max(...rest.map(m => m.spend)), restSpend = rest.reduce((a, m) => a + m.spend, 0);
+  const bucketLabel = {PRODUCTION:'Production', SPARE:'Spare parts', WARRANTY:'Warranty', NON_PRODUCT:'Not a product part', UNRESOLVED:'Could not be identified', PURPOSE_UNKNOWN:'Part known, purpose not stated'};
+  const rq = h.review_queue;
+  return `<h1>Linkage health</h1>
+  <p class="sub">How much of the invoiced spend is tied to a part, and how each tie was made. Every later number in this tool rests on these links, so each one shows its reason and can be accepted or rejected.</p>
+  <div class="big-compare">
+    <div class="tile"><div class="k">Plain part-number match (what a spreadsheet lookup gets)</div><div class="v">${pct(h.plain_share)}</div>
+      <div class="d">${usdk(h.plain_spend)} of ${usdk(total)} ties to a BOM line</div><div class="progress plain"><div style="width:${h.plain_share*100}%"></div></div></div>
+    <div class="tile hero"><div class="k">Tied to a part by Tether</div><div class="v">${pct(h.tool_share)}</div>
+      <div class="d">${usdk(h.tool_spend)} linked. ${usdk(h.tool_spend - h.plain_spend)} more than the plain match</div><div class="progress"><div style="width:${h.tool_share*100}%"></div></div></div>
+  </div>
+  <div class="tiles">
+    ${tile('Left unresolved, on purpose', usdk(h.unresolved), pct(h.unresolved/total) + ' of spend. Never forced into a match')}
+    ${tile('Not a product part', usdk(h.non_product), 'Freight, tooling, testing, supplies. Kept out of product cost')}
+    ${tile('Spare and warranty on production numbers', usdk(h.spare_on_production), 'A plain match would charge this to product cost')}
+    ${tile('Links waiting for review', rq.filter(r => !linkDecisions[rqKey(r)]).length, 'Lower-confidence links, listed below')}
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>How each dollar was linked</h2><p class="h2sub">An exact part number ties ${usdk(exact.spend)} (${pct(exact.spend/total)}). The other ${usdk(restSpend)} is where a plain match fails. The bars show what the tool used instead. Lighter bars are spend that is not linked to a part.</p>
+      ${barList(rest.map(m => ({label: esc(m.label), value: m.spend, muted: ['UNRESOLVED','NON_PRODUCT'].includes(m.method),
+        tip: `${esc(m.label)}<br>${usd(m.spend)} · ${num(m.lines)} invoice lines · ${pct(m.spend/total)} of spend`})), maxM, usdk)}
+    </div>
+    <div class="card"><h2>What the spend was for</h2><p class="h2sub">Read from the account on the line, then the delivery location, then the type of part number.</p>
+      ${tableOf([{h:'Purpose', f:r=>bucketLabel[r.bucket] || r.bucket},{h:'Spend', num:1, f:r=>usd(r.spend)},{h:'Share', num:1, f:r=>pct(r.spend/total)},{h:'Lines', num:1, f:r=>num(r.lines)}], h.by_bucket)}
+      ${h.uom_missing.length ? `<div class="caution small"><b>Unit conversion missing.</b> ${h.uom_missing.map(u => `${esc(u.item)} is bought by the ${esc(u.uom)} with no conversion on file (${usd(u.spend)}, ${u.lines} lines)`).join('; ')}. The spend is linked, but its price is left out of comparisons until someone supplies the conversion.</div>` : ''}
+    </div>
+  </div>
+  <div class="card"><h2>Review queue</h2><p class="h2sub">Links the tool made with less than 90% confidence. A buyer confirms or rejects each one; the tool never hides a guess inside a total.</p>
+    ${tableOf([
+      {h:'Plant', f:r=>esc(r.site)},
+      {h:'On the line', f:r=>`${esc(r.item_raw || '(no part number)')}<div class="muted small">${esc(r.line_text)}</div>`},
+      {h:'Linked to', f:r=>`<b>${esc(r.item)}</b><div class="muted small">${esc(r.part)}</div>`},
+      {h:'Why', f:r=>`${esc(r.reason)}<div class="muted small">${esc(r.method_label)} · ${esc(r.supplier)}</div>`},
+      {h:'Confidence', num:1, f:r=>pct(r.confidence,0)},
+      {h:'Spend', num:1, f:r=>usd(r.spend)},
+      {h:'Decision', f:r=>{const k = rqKey(r), dcs = linkDecisions[k];
+        return `<span class="nowrap"><button class="btn small ${dcs==='accepted'?'sel':''}" data-link="${esc(k)}" data-v="accepted">Accept</button> <button class="btn small ${dcs==='rejected'?'sel':''}" data-link="${esc(k)}" data-v="rejected">Reject</button></span>`}}], rq)}
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>Unresolved lines</h2><p class="h2sub">${h.unresolved_lines.length} invoice lines worth ${usd(h.unresolved)} carry no part number, supplier part number, quote or usable description.</p>
+      ${tableOf([{h:'Plant', f:r=>esc(r.site)},{h:'Supplier', f:r=>esc(r.supplier)},{h:'Line text', f:r=>esc(r.line_text)},{h:'Amount', num:1, f:r=>usd(r.amount)}], h.unresolved_lines.slice(0, 12))}
+      ${h.unresolved_lines.length > 12 ? `<div class="muted small" style="margin-top:6px">Showing the 12 largest of ${h.unresolved_lines.length}.</div>` : ''}
+    </div>
+    <div class="card"><h2>The old cross-reference, checked</h2><p class="h2sub">The 2023 migration workbook links ${h.legacy_links} part pairs between the plants. Tether found ${h.same_part_links} same-part links from descriptions and specs, and checked every old row against the specs.</p>
+      ${tableOf([{h:'Dayton', f:r=>`<span class="nowrap">${esc(r.dayton_item)}</span>`},{h:'El Paso', f:r=>esc(r.elpaso_part)},{h:'Workbook says', f:r=>esc(r.legacy_status)},
+        {h:'Tether says', f:r=>r.verdict === 'CONFIRMED' ? chip('✓ Confirmed','good') : r.verdict === 'CONFLICT' ? chip('✕ Conflict','crit') : chip('? Not confirmed','warn')},
+        {h:'Detail', f:r=>esc(r.detail)}], h.legacy_xref)}
+    </div>
+  </div>`;
+}
+const rqKey = r => [r.site, r.item_raw || r.line_text, r.item].join('|');
+
+// =============================================================================================
+// Page 2: product cost
+// =============================================================================================
+function pageCost() {
+  const P = DATA.products, ps = P.products, p = ps[state.product];
+  const maxFull = Math.max(...ps.map(x => x.material + x.labor + x.overhead));
+  const stackRow = (x, i) => { const full = x.material + x.labor + x.overhead;
+    const seg = (v, c, name) => `<div style="width:${100*v/maxFull}%;background:var(${c})" data-tip="${esc(x.model)} at ${esc(x.site)}<br>${name}: ${usd(v,2)} per unit (${pct(v/full,0)} of full cost)"></div>`;
+    return `<tr class="click" data-product="${i}" style="${i===state.product?'background:#faf8ff':''}"><td><b>${esc(x.model)}</b></td><td>${esc(x.site)}</td>
+      <td style="width:42%"><div class="stack">${seg(x.material,'--s1','Purchased material')}${seg(x.labor,'--s2','Labor')}${seg(x.overhead,'--s3','Overhead')}</div></td>
+      <td class="num">${usd(x.material,2)}</td><td class="num">${usd(x.labor,2)}</td><td class="num">${usd(x.overhead,2)}</td><td class="num"><b>${usd(full,2)}</b></td><td class="num">${num(x.units)}</td>
+      <td>${x.lines_without_price ? chip('! ' + x.lines_without_price + ' line without price','warn') : chip('✓ every line priced','good')}</td></tr>`; };
+  const maxLine = Math.max(...p.lines.map(l => l.cost_per_unit || 0));
+  return `<h1>Product cost</h1>
+  <p class="sub">Cost per finished unit, built from linked production spend only. Spare, warranty and non-product spend are kept out. Material is what the plant actually paid; labor and overhead come from the plant's standards and are shown as separate, labeled parts.</p>
+  <div class="card"><h2>Full cost per unit, by product and plant</h2>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Purchased material</span><span><i style="background:var(--s2)"></i>Labor (standard)</span><span><i style="background:var(--s3)"></i>Overhead (standard)</span></div>
+    <table><thead><tr><th>Product</th><th>Plant</th><th></th><th class="num">Material</th><th class="num">Labor</th><th class="num">Overhead</th><th class="num">Full cost</th><th class="num">Units built</th><th>Data check</th></tr></thead>
+    <tbody>${ps.map(stackRow).join('')}</tbody></table>
+    <div class="muted small" style="margin-top:8px">Click a row to see what drives that product's cost.</div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>${esc(p.model)} at ${esc(p.site)}: what drives the material cost</h2><p class="h2sub">Each BOM line at the price this plant paid, per finished unit. A bought assembly or kit is costed once, never together with the parts inside it.</p>
+      ${barList(p.lines.filter(l => l.cost_per_unit > 0).slice(0, 14).map(l => ({label: esc(l.name), value: l.cost_per_unit,
+        note: l.used_in > 1 ? `<span class="muted small">· shared by ${l.used_in}</span>` : '',
+        tip: `${esc(l.name)}<br>${num(l.qty_per_unit, l.qty_per_unit % 1 ? 2 : 0)} per unit × ${price(l.price)} = ${usd(l.cost_per_unit, 3)}<br>${esc(l.item)}${l.note ? '<br>' + esc(l.note) : ''}`})), maxLine, v => usd(v, 3))}
+      ${p.lines.filter(l => l.note).length ? `<div class="small muted" style="margin-top:8px">${p.lines.filter(l => l.note).map(l => `<div>• ${esc(l.name)}: ${esc(l.note)}</div>`).join('')}</div>` : ''}
+    </div>
+    <div class="card"><h2>Parts shared across products</h2><p class="h2sub">The prompt's point that BOMs share parts: each shared part's spend, split across the products that use it by quantity per unit and units built.</p>
+      ${tableOf([{h:'Part', f:r=>esc(r.name)},{h:'Production spend', num:1, f:r=>usd(r.spend)},
+        {h:'Split', f:r=>r.uses.sort((a,b)=>b.spend-a.spend).map(u => `<span class="chip" data-tip="${esc(u.model)} at ${esc(u.site)}: ${usd(u.spend)}">${esc(u.model)} ${esc(u.site === 'Dayton' ? 'DAY' : 'ELP')} ${pct(u.share,0)}</span>`).join(' ')}],
+        P.shared.slice(0, 12))}
+      <div class="muted small" style="margin-top:6px">Showing the 12 largest of ${P.shared.length} shared parts.</div>
+    </div>
+  </div>
+  <div class="card"><h2>Plan against actual, and next year</h2><p class="h2sub">Units built against the plan, and next year's purchased-material spend if today's prices hold.</p>
+    ${tableOf([{h:'Product', f:r=>`<b>${esc(r.model)}</b>`},{h:'Plant', f:r=>esc(r.site)},{h:'Plan (units)', num:1, f:r=>num(r.plan_units)},{h:'Actual (units)', num:1, f:r=>num(r.actual_units)},
+      {h:'Against plan', num:1, f:r=>{const v = r.actual_units/r.plan_units - 1; return (Math.abs(v) >= 0.1 ? chip((v>0?'▲ +':'▼ ') + pct(v,0), 'warn') : Math.abs(v) < 0.005 ? 'on plan' : (v>0?'+':'') + pct(v,0))}},
+      {h:'Actual material spend', num:1, f:r=>usd(r.actual_units*r.material)},{h:'Next-year plan (units)', num:1, f:r=>num(r.next_year_units)},{h:'Next-year material spend', num:1, f:r=>usd(r.next_year_units*r.material)}], P.plan)}
+    <div class="muted small" style="margin-top:8px">Next-year purchased material across all products: <b>${usd(P.plan.reduce((s,r)=>s+r.next_year_units*r.material,0))}</b>.</div>
+  </div>`;
+}
+
+// =============================================================================================
+// Page 3: opportunities
+// =============================================================================================
+const decLabel = {accepted:'Accepted', rejected:'Rejected', review:'Sent for review'};
+function oppTotals() {
+  const o = DATA.opportunities, live = o.filter(x => decisions[x.opp_id] !== 'rejected');
+  const sum = a => a.reduce((s, x) => s + x.saving, 0);
+  return { ready: sum(live.filter(x => x.readiness === 'READY')), review: sum(live.filter(x => x.readiness === 'REVIEW')),
+           accepted: sum(o.filter(x => decisions[x.opp_id] === 'accepted')), nAcc: o.filter(x => decisions[x.opp_id] === 'accepted').length,
+           nReady: live.filter(x => x.readiness === 'READY').length, nReview: live.filter(x => x.readiness === 'REVIEW').length };
+}
+function pageOpps() {
+  const t = oppTotals(), linked = DATA.health.tool_spend;
+  const types = [...new Set(DATA.opportunities.map(o => o.opp_type))];
+  const list = DATA.opportunities.filter(o => (state.type === 'ALL' || o.opp_type === state.type) && (state.ready === 'ALL' || o.readiness === state.ready)
+    && (!state.q || (o.title + ' ' + (o.best_supplier_name||'') + ' ' + (o.part_name||'')).toLowerCase().includes(state.q.toLowerCase())));
+  if (!state.opp || !list.find(o => o.opp_id === state.opp)) state.opp = list[0]?.opp_id;
+  const cur = DATA.opportunities.find(o => o.opp_id === state.opp);
+  return `<h1>Opportunities</h1>
+  <p class="sub">Every saving the links make visible, largest first. Each card says what to do, what it is worth over 12 months, and shows the invoice lines behind the number.</p>
+  <div class="tiles">
+    ${tile('Ready to act', usd(t.ready), t.nReady + ' opportunities that passed every check', true)}
+    ${tile('Needs review first', usd(t.review), t.nReview + ' that need an engineering or contract check')}
+    ${tile('Share of linked spend', pct((t.ready + t.review) / linked), 'identified savings against ' + usdk(linked) + ' linked')}
+    ${tile('Accepted in this session', usd(t.accepted), t.nAcc + ' accepted so far')}
+  </div>
+  <div class="tabs"><button class="btn ${state.tab==='list'?'sel':''}" data-tab="list">Savings list</button><button class="btn ${state.tab==='fam'?'sel':''}" data-tab="fam">Look-alike parts: merge, review or keep apart</button>
+    <span style="flex:1"></span><button class="btn primary" id="export">Export list to Excel (CSV)</button></div>
+  ${state.tab === 'fam' ? families() : `
+  <div class="filters">
+    <select id="f-type"><option value="ALL">All types</option>${types.map(x => `<option value="${x}" ${state.type===x?'selected':''}>${esc(DATA.opportunities.find(o=>o.opp_type===x).type_label)}</option>`).join('')}</select>
+    <select id="f-ready"><option value="ALL">Any status</option><option value="READY" ${state.ready==='READY'?'selected':''}>Ready to act</option><option value="REVIEW" ${state.ready==='REVIEW'?'selected':''}>Needs review</option></select>
+    <input id="f-q" placeholder="Search part or supplier" value="${esc(state.q)}">
+    <span class="muted small">${list.length} shown · ${usd(list.reduce((s,o)=>s+o.saving,0))}</span>
+  </div>
+  <div class="grid2"><div class="opplist">${list.map((o, i) => oppCard(o, i)).join('') || '<div class="muted">Nothing matches the filters.</div>'}</div>
+  <div class="card detail">${cur ? oppDetail(cur) : ''}</div></div>`}`;
+}
+function oppCard(o) {
+  const d = decisions[o.opp_id];
+  return `<div class="opp ${o.opp_id===state.opp?'on':''} ${d==='rejected'?'rejected':''}" data-opp="${esc(o.opp_id)}">
+    <div class="t">${esc(o.title)}</div><div class="amt">${usd(o.saving)}</div>
+    <div class="m">${chip(esc(o.type_label))}${o.readiness==='READY' ? chip('✓ Ready to act','good') : chip('? Needs review','warn')}
+      ${o.caution ? chip('! Caution','warn') : ''}${d ? chip(decLabel[d],'acc') : ''}</div></div>`;
+}
+function pricePointBlock(points, bestKey, title, sub) {
+  const max = Math.max(...points.map(p => p.price));
+  return `<h2 style="margin-top:14px">${title}</h2><p class="h2sub">${sub}</p>
+  ${barList(points.map(p => ({ label: `${esc(p.supplier)} <span class="muted small">· ${esc(p.site)}</span>`, value: p.price, muted: !p.qualified,
+      note: (p.supplier_key + '|' + p.site) === bestKey ? chip('★ Best qualified','good') : !p.qualified ? chip('✕ Not qualified','crit') : '',
+      tip: `${esc(p.supplier)} at ${esc(p.site)}<br>${price(p.price)} per unit · ${num(p.qty)} units · ${usd(p.spend)}${p.qualified ? '' : '<br>' + esc(p.fail_reason)}` })), max, price)}
+  ${tableOf([{h:'Supplier', f:p=>esc(p.supplier)},{h:'Plant', f:p=>esc(p.site)},{h:'Price / unit', num:1, f:p=>price(p.price)},{h:'Quantity', num:1, f:p=>num(p.qty)},{h:'Spend', num:1, f:p=>usd(p.spend)},
+    {h:'On time', num:1, f:p=>p.on_time == null ? '–' : (p.on_time < 0.6 && p.receipts >= 20 ? chip('! ' + pct(p.on_time,0),'warn') : pct(p.on_time,0))},
+    {h:'Lead time', num:1, f:p=>p.lead_days == null ? '–' : Math.round(p.lead_days) + ' d'},
+    {h:'Qualification', f:p=>p.qualified ? chip('✓ Qualified','good') : `${chip('✕ Fails','crit')} <span class="small muted">${esc(p.fail_reason)}</span>`}], points)}`;
+}
+function specCompare(a, b) {     // a: this part's records, b: the standard's
+  const pa = a[0], pb = b[0];
+  const rowsS = [['Part number', x => x.map(p => p.item + ' (' + p.site + ')').join(', ')], ['Description', x => x[0].descr], ['Material', x => x.find(p=>p.material)?.material],
+    ['Rating', x => x.find(p=>p.rating)?.rating], ['Dimensions', x => x.find(p=>p.dimensions)?.dimensions], ['Compliance', x => x.find(p=>p.compliance)?.compliance],
+    ['Maker', x => x.find(p=>p.mfr)?.mfr], ['Maker part number', x => x.find(p=>p.mpn)?.mpn]];
+  return `<table><thead><tr><th>Field</th><th>This part</th><th>Family standard</th></tr></thead><tbody>${rowsS.map(([k, f], i) => { const va = f(a) || '', vb = f(b) || '';
+    const differs = i > 1 && va && vb && va.toUpperCase() !== vb.toUpperCase();
+    return `<tr><td class="muted">${k}</td><td class="${differs?'diff':''}">${esc(va) || '<span class="muted">not recorded</span>'}</td><td class="${differs?'diff':''}">${esc(vb) || '<span class="muted">not recorded</span>'}</td></tr>`}).join('')}</tbody></table>`;
+}
+function leakChart(lines) {
+  const W = 560, H = 190, L = 54, R = 70, T = 14, B = 26;
+  const xs = lines.map(l => Date.parse(l.inv_date)), q = lines[0].quoted_price;
+  const ys = lines.map(l => l.base_price).concat([q]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys) * 0.985, y1 = Math.max(...ys) * 1.01;
+  const X = v => L + (W - L - R) * (v - x0) / Math.max(1, x1 - x0), Y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
+  const mon = d => new Date(d).toLocaleString('en-US', {month:'short', year:'2-digit', timeZone:'UTC'});
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px" role="img" aria-label="Invoiced price against quoted price over time">
+    <line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--line-strong)"/>
+    <text x="${L}" y="${H-8}" font-size="11" fill="var(--ink2)">${mon(x0)}</text><text x="${W-R}" y="${H-8}" font-size="11" text-anchor="end" fill="var(--ink2)">${mon(x1)}</text>
+    <line x1="${L}" x2="${W-R}" y1="${Y(q)}" y2="${Y(q)}" stroke="var(--ink2)" stroke-dasharray="4 4"/>
+    <text x="${W-R+6}" y="${Y(q)+4}" font-size="11" fill="var(--ink2)">Quoted</text>
+    <text x="${L-6}" y="${Y(q)+4}" font-size="11" text-anchor="end" fill="var(--ink2)">${price(q)}</text>
+    <text x="${L-6}" y="${Y(Math.max(...ys))+4}" font-size="11" text-anchor="end" fill="var(--ink2)">${price(Math.max(...ys))}</text>
+    <polyline fill="none" stroke="var(--s1)" stroke-width="2" points="${lines.map(l => X(Date.parse(l.inv_date)) + ',' + Y(l.base_price)).join(' ')}"/>
+    ${lines.map(l => `<circle cx="${X(Date.parse(l.inv_date))}" cy="${Y(l.base_price)}" r="4.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-tip="Invoice ${esc(l.invoice_no)} · ${esc(l.inv_date)}<br>Invoiced ${price(l.base_price)} against quote ${price(l.quoted_price)}<br>${num(l.base_qty)} units · ${usd(l.leak)} above quote"/>`).join('')}
+    <text x="${W-R+6}" y="${Y(lines.at(-1).base_price)+4}" font-size="11" fill="var(--ink)">Invoiced</text></svg>`;
+}
+function oppDetail(o) {
+  const d = decisions[o.opp_id];
+  let body = '';
+  if (o.opp_type === 'PRICE_ALIGNMENT') {
+    body = pricePointBlock(o.price_points, o.best_supplier + '|' + o.best_site, 'Price paid, by supplier and plant', 'Dollars per base unit after converting boxes, rolls and feet. Lighter bars are suppliers that fail the qualification check.')
+      + `<h2 style="margin-top:14px">Part numbers in this group</h2>${tableOf([{h:'Plant', f:p=>esc(p.site)},{h:'Number', f:p=>esc(p.item)},{h:'Description', f:p=>esc(p.descr)},{h:'Status', f:p=>p.status==='ACTIVE'?'Active':chip('Old number')}], o.parts)}`;
+  } else if (o.opp_type === 'CLOSE_SPEC') {
+    body = `<h2 style="margin-top:14px">Spec comparison</h2><p class="h2sub">Highlighted fields differ. Everything else the data holds is the same.</p>${specCompare(o.parts, o.standard_parts)}`
+      + pricePointBlock(o.price_points, '', 'What this part costs today', 'Price per base unit by supplier and plant.')
+      + pricePointBlock(o.standard_points, o.best_supplier + '|' + o.best_site, 'What the standard part costs', esc(o.standard_name));
+  } else if (o.opp_type === 'QUOTE_LEAKAGE') {
+    body = `<h2 style="margin-top:14px">Invoiced price against the awarded quote</h2><p class="h2sub">${esc(o.detail)}.</p>${leakChart(o.leak_lines)}
+      <details><summary>Show the ${o.leak_lines.length} invoice lines</summary>${tableOf([{h:'Invoice', f:l=>esc(l.invoice_no)},{h:'Date', f:l=>esc(l.inv_date)},{h:'Quantity', num:1, f:l=>num(l.base_qty)},{h:'Invoiced', num:1, f:l=>price(l.base_price)},{h:'Quoted', num:1, f:l=>price(l.quoted_price)},{h:'Above quote', num:1, f:l=>usd(l.leak)}], o.leak_lines)}</details>`;
+  } else {
+    body = `<h2 style="margin-top:14px">Parts affected</h2><p class="h2sub">${esc(o.detail)}</p>${tableOf([{h:'Part', f:p=>esc(p.part)},{h:'What the invoices show', f:p=>esc(p.detail)},{h:'Paid above quote', num:1, f:p=>usd(p.paid_above_quote)}], o.increase_parts)}`;
+  }
+  const checks = o.opp_type === 'PRICE_ALIGNMENT' ? [
+      ['Same part confirmed', (o.parts.filter(p=>p.status==='ACTIVE').length) + ' active part numbers share description and specs'],
+      ['Prices on one basis', 'All lines converted to price per base unit'],
+      ['Supplier qualified', o.best_supplier_name + ' holds ISO 9001 and the certificate this part calls for'],
+      ['Real volume', 'The target price comes from a supplier carrying at least 5% of the volume']] :
+    o.opp_type === 'CLOSE_SPEC' ? [['Same kind of part', 'Descriptions and spec fields line up'], ['Difference is not safety-critical', o.detail], ['Engineering sign-off', null]] :
+    o.opp_type === 'QUOTE_LEAKAGE' ? [['Awarded quote on file', 'Quote dated before the invoices'], ['A pattern, not a one-off', o.leak_lines.length + ' invoice lines above quote']] :
+    [['Awarded quotes on file', 'For every part listed'], ['Contract allows a surcharge', null]];
+  return `<div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><div class="muted small">${esc(o.type_label)}</div><h2 style="font-size:17px">${esc(o.title)}</h2></div>
+      <div class="right"><div style="font-size:24px;font-weight:650">${usd(o.saving)}</div><div class="muted small">over 12 months, on ${usd(o.spend)} of spend</div></div></div>
+    <div class="action"><b>What to do.</b> ${esc(o.action)}</div>
+    ${o.caution ? `<div class="caution"><b>Caution.</b> ${esc(o.caution)}</div>` : ''}
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn ${d==='accepted'?'sel':''}" data-dec="accepted">Accept</button><button class="btn ${d==='rejected'?'sel':''}" data-dec="rejected">Reject</button><button class="btn ${d==='review'?'sel':''}" data-dec="review">Send for review</button>
+      ${o.models?.length ? `<span class="muted small">Used in: ${o.models.map(esc).join(', ')}</span>` : ''}</div>
+    <h2 style="margin-top:14px">Checks</h2>
+    <div>${checks.map(([k, v]) => `<div style="margin:3px 0">${v ? chip('✓','good') : chip('? open','warn')} <b>${esc(k)}</b>${v ? ' <span class="muted">· ' + esc(v) + '</span>' : ''}</div>`).join('')}</div>
+    ${body}
+    ${o.evidence ? `<details><summary>Show the invoice lines behind this number (${o.evidence.length} largest)</summary>${tableOf([{h:'Invoice', f:e=>esc(e.invoice_no)},{h:'Date', f:e=>esc(e.inv_date)},{h:'Plant', f:e=>esc(e.site)},{h:'Supplier', f:e=>esc(e.supplier)},{h:'Part no.', f:e=>esc(e.item)},{h:'Quantity', num:1, f:e=>num(e.qty) + ' ' + esc(e.uom)},{h:'Per base unit', num:1, f:e=>price(e.base_price)},{h:'Amount', num:1, f:e=>usd(e.amount, 2)}], o.evidence)}</details>` : ''}`;
+}
+function families() {
+  const relChip = r => r === 'CLOSE_SPEC' ? chip('? Engineering review','warn') : r === 'DO_NOT_MERGE' ? chip('✕ Do not merge','crit') : chip('✓ Same part','good');
+  return `<div class="card"><h2>Three outcomes for parts that look alike</h2>
+    <p class="h2sub">Real part masters are full of near-identical specs. Tether compares every pair field by field and never merges on description alone. A difference in trip temperature, wattage, voltage or wire count keeps parts apart; a small step in length, wall, diameter, current rating or board grade goes to engineering.</p>
+    <div class="flow">${chip('✓ Same part','good')} <span>identical on every spec field: merge the numbers, compare prices</span></div>
+    <div class="flow">${chip('? Engineering review','warn')} <span>one small, non-critical difference: sized as potential, not counted as ready</span></div>
+    <div class="flow">${chip('✕ Do not merge','crit')} <span>differs on a field that changes function or safety: kept apart, shown with the reason</span></div></div>
+  ${DATA.duplicates.length ? `<div class="card"><h2>Duplicate numbers inside one plant</h2><p class="h2sub">The same part created twice, each number bought from a different supplier.</p>
+    ${tableOf([{h:'Plant', f:r=>esc(r.site)},{h:'Number', f:r=>esc(r.item_a)},{h:'Same part as', f:r=>esc(r.item_b)},{h:'Outcome', f:r=>relChip('SAME')},{h:'Evidence', f:r=>esc(r.evidence)}], DATA.duplicates)}</div>` : ''}
+  ${DATA.families.map(f => `<div class="card"><h2>${esc(f.members.find(m => m.group_id === f.standard)?.name || f.members[0].name)} family</h2>
+    ${tableOf([{h:'Part', f:p=>`<b>${esc(p.name_a)}</b><div class="muted small">${f.members.find(m=>m.group_id===p.group_a).parts.map(x=>esc(x.item)).join(', ')}</div>`},
+      {h:'Compared with', f:p=>`<b>${esc(p.name_b)}</b><div class="muted small">${f.members.find(m=>m.group_id===p.group_b).parts.map(x=>esc(x.item)).join(', ')}</div>`},
+      {h:'Outcome', f:p=>relChip(p.relation)},{h:'What differs', f:p=>esc(p.differences)}], f.pairs)}</div>`).join('')}`;
+}
+function exportCsv() {
+  const head = ['Rank','Opportunity','Type','Status','Decision','Annual saving (USD)','Spend in scope (USD)','Best qualified supplier','Plant','Target price per unit','What to do','Caution'];
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const lines = [head.map(q).join(',')].concat(DATA.opportunities.map((o, i) => [i+1, o.title, o.type_label, o.readiness==='READY'?'Ready to act':'Needs review', decLabel[decisions[o.opp_id]] || '', Math.round(o.saving), Math.round(o.spend), o.best_supplier_name, o.best_site, o.best_price ?? '', o.action, o.caution || ''].map(q).join(',')));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\r\n')], {type:'text/csv'})); a.download = 'tether_opportunities.csv'; a.click();
+}
+
+// =============================================================================================
+// Page 4: watchlist
+// =============================================================================================
+function pageWatch() {
+  const w = DATA.watch, open = w.notices.filter(n => n.is_open);
+  const exposed = open.reduce((s, n) => s + n.spend_exposed, 0);
+  const late = w.orders.filter(o => o.days_slip >= 14), old = w.orders.filter(o => o.on_old_number);
+  return `<h1>Watchlist</h1>
+  <p class="sub">The same links that size savings also show risk early: which products a supplier notice touches, which plant was never told, and which open orders are slipping.</p>
+  <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+    ${tile('Supplier notices with no completed action', open.length + ' of ' + w.notices.length, usdk(exposed) + ' of annual spend on the parts they touch', true)}
+    ${tile('Plants not told', open.filter(n => n.not_told.length).length, 'open notices where another plant buys the same part from that supplier')}
+    ${tile('Open orders confirmed 2+ weeks late', late.length + ' of ' + w.open_orders, 'by the supplier\'s own confirmed date')}
+    ${tile('Open orders on replaced numbers', old.length, 'ordered on a part number that has been superseded')}
+    ${tile('Air freight already spent', usd(w.expedite), w.expedite_lines.length + ' expedite invoices')}
+    ${tile('Spend with unqualified suppliers', usdk(w.unqualified_total), w.unqualified.length + ' suppliers fail a required check')}
+  </div>
+  <h2>Supplier change notices</h2><p class="h2sub">Suppliers give months of notice. It gets filed and forgotten. Each notice is tied to the parts, products and spend it touches at every plant.</p>
+  ${w.notices.map(n => `<div class="notice">
+    <h3>${esc(n.supplier_name)}: ${esc(n.notice_type.replace(/_/g,' ').toLowerCase())} <span class="muted small">· ${esc(n.notice_id)} · received ${esc(n.received_date)} at ${esc(n.site_received)} · effective ${esc(n.effective_date)}</span></h3>
+    <div>${esc(n.notice_text)}</div>
+    <div class="flow">${n.is_open ? chip('! No completed action','warn') : chip('✓ Closed','good')} <span class="muted">${esc(n.internal_status)}</span></div>
+    <div class="flow"><b>Tied to:</b> ${n.parts.length ? n.parts.map(p => chip(esc(p))).join(' ') : chip('No part we buy: no exposure','good')}</div>
+    ${n.parts.length ? `<div class="flow"><b>How:</b> <span class="muted">${esc(n.matched_by)}</span></div>
+    ${tableOf([{h:'Plant', f:e=>esc(e.site)},{h:'Received the notice', f:e=>e.was_told ? chip('✓ Yes','good') : (e.spend_with_supplier > 0 ? chip('✕ Not told, and buys from this supplier','crit') : 'No (does not buy these from this supplier)')},
+      {h:'12-month spend with this supplier', num:1, f:e=>usd(e.spend_with_supplier)},{h:'Products using the parts', f:e=>esc((e.models||'').split(',').join(', ')) || '–'},{h:'Open orders', num:1, f:e=>e.open_orders}], n.exposure)}` : ''}
+  </div>`).join('')}
+  <div class="card"><h2>Open orders that need attention</h2><p class="h2sub">Late by the supplier's own confirmation, placed on a replaced part number, or on a part under an open notice.</p>
+    ${tableOf([{h:'Plant', f:o=>esc(o.site)},{h:'PO', f:o=>esc(o.po_number + '/' + o.po_line)},{h:'Supplier', f:o=>esc(o.supplier)},{h:'Part', f:o=>esc(o.part)},{h:'Promised', f:o=>esc(o.promised)},{h:'Confirmed', f:o=>esc(o.confirmed)},
+      {h:'Slip', num:1, f:o=>o.days_slip >= 14 ? chip('! ' + o.days_slip + ' days','warn') : (o.days_slip > 0 ? o.days_slip + ' days' : 'on time')},
+      {h:'Products waiting', f:o=>esc((o.models||'').split(',').join(', '))},
+      {h:'Why it is here', f:o=>[o.on_old_number ? chip('Replaced number','crit') + ' <span class="small muted">' + esc(o.old_number_note) + '</span>' : '', o.days_slip >= 14 ? chip('Late','warn') : '', o.open_notices ? chip('Open notice ' + esc(o.open_notices)) : ''].filter(Boolean).join(' ')}], w.orders)}
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>Supplier delivery record</h2><p class="h2sub">Share of receipts on or before the promised date. This feeds the supplier checks on the Opportunities page.</p>
+      ${barList(w.delivery.map(s => ({label: esc(s.supplier), value: s.on_time, muted: s.on_time >= 0.6,
+        note: s.unqualified_spend > 0 ? chip('✕ Not qualified','crit') : '',
+        tip: `${esc(s.supplier)}<br>${pct(s.on_time,0)} on time over ${s.receipts} receipts<br>${num(s.avg_days_late,1)} days late on average · actual lead time ${Math.round(s.lead_days)} days<br>12-month spend ${usd(s.spend)}`})), 1, v => pct(v, 0))}
+      <div class="muted small">Darker bars are suppliers below 60% on time.</div></div>
+    <div class="card"><h2>Suppliers that fail a required check</h2><p class="h2sub">Cheapest is not the answer. These suppliers are never picked as the target price.</p>
+      ${tableOf([{h:'Supplier', f:s=>esc(s.supplier)},{h:'What is missing', f:s=>esc(s.reason)},{h:'12-month spend', num:1, f:s=>usd(s.spend)}], w.unqualified)}
+      <h2 style="margin-top:16px">Expedite freight already paid</h2>
+      ${tableOf([{h:'Plant', f:e=>esc(e.site)},{h:'Date', f:e=>esc(e.inv_date)},{h:'Line', f:e=>esc(e.line_text)},{h:'Amount', num:1, f:e=>usd(e.amount)}], w.expedite_lines)}</div>
+  </div>`;
+}
+
+// =============================================================================================
+// Page 5: platform view
+// =============================================================================================
+function pagePlatform() {
+  const P = DATA.platform, S = P.summary, fam = P.family, cols = fam.builds.concat(fam.others);
+  const bl = k => { const [s, m] = k.split('|'); return {site: s, model: m}; };
+  const famBuilds = P.builds.filter(b => b.in_family);
+  const coreLo = Math.min(...famBuilds.map(b => b.core)), coreHi = Math.max(...famBuilds.map(b => b.core));
+  const maxMat = Math.max(...P.builds.map(b => b.material));
+  const andList = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' and ' + a.at(-1) : a[0];
+  const slotById = Object.fromEntries(P.slots.map(s => [s.slot_id, s]));
+  const modsOf = model => P.modules.filter(m => m.models.includes(model));
+  const modName = m => `${esc(m.lead.split(',')[0])}${m.parts > 1 ? ' + ' + (m.parts - 1) + ' more' : ''}`;
+  const vshade = {A:'#eeedea', B:'#d9e6f7', C:'#fbe0d3', D:'#d5f0e6', E:'#eeedea'};
+  const cell = (s, k) => { const c = s.cells[k]; if (!c) return '<span class="muted">–</span>';
+    const v = s.variants.find(x => x.key === c.v), multi = s.variants.filter(x => x.in_family).length > 1;
+    const tip = `${esc(v.name)}${v.how === 'MADE' ? '<br>Made in house from ' + v.items.length + ' purchased parts' : ''}<br>${v.items.map(esc).join(', ')}<br>${usd(c.cost, 3)} per unit${c.note ? '<br>' + esc(c.note) : ''}`;
+    return multi ? `<span class="vchip" style="background:${vshade[c.v]}" data-tip="${tip}">${c.v}</span>` : `<span class="vdot" data-tip="${tip}">${v.in_family ? '●' : '○'}</span>`; };
+  const status = s => s.category === 'CORE' ? chip('✓ Common part', 'good') :
+    [s.kinds.includes('REVIEW') ? chip('? Engineering review', 'warn') + (s.saving ? ` <span class="small muted">${usd(s.saving)} a year</span>` : '') : '',
+     s.kinds.includes('MAKE_BUY') ? chip('Make or buy', 'acc') : '', s.kinds.includes('APART') ? chip('✕ Keep separate', 'crit') : '',
+     s.kinds.includes('BY_MODEL') ? chip('One per model') : '', !s.kinds.length ? chip('✓ Common part', 'good') : ''].filter(Boolean).join(' ');
+  const rowOf = s => `<tr><td><b>${esc(s.name)}</b>${s.variants.filter(v => v.in_family).length > 1 ? `<div class="muted small">${s.variants.filter(v => v.in_family).map(v => v.key + ': ' + esc(v.name) + (v.how === 'MADE' ? ' (made in house)' : '')).join(' · ')}</div>` : ''}</td>
+    ${cols.map(k => `<td class="ctr${fam.others.includes(k) ? ' ref' : ''}">${cell(s, k)}</td>`).join('')}
+    <td class="num">${usd(s.cost, 2)}</td><td>${status(s)}<div class="muted small">${s.status.map(esc).join('. ')}</div></td></tr>`;
+  const group = (title, sub, list) => list.length ? `<tr class="grp"><td colspan="${cols.length + 3}"><b>${title}</b> <span class="muted">${sub}</span></td></tr>` + list.map(rowOf).join('') : '';
+  const core = P.slots.filter(s => s.category === 'CORE'), split = P.slots.filter(s => s.category === 'SPLIT');
+  const stack = b => { const seg = (v, c, name) => `<div style="width:${100 * v / maxMat}%;background:var(${c})" data-tip="${esc(b.model)} at ${esc(b.site)}<br>${name}: ${usd(v, 2)} per unit (${pct(v / b.material, 0)} of material)"></div>`;
+    return `<tr><td><b>${esc(b.model)}</b>${b.in_family ? '' : ' <span class="muted small">(for comparison)</span>'}</td><td class="nowrap">${esc(b.site)}</td>
+      <td style="width:36%"><div class="stack">${seg(b.core, '--s1', 'Common core')}${seg(b.split, '--s2', 'Core job, more than one part')}${seg(b.module, '--s3', 'Add-on modules')}</div></td>
+      <td class="num">${usd(b.core, 2)}</td><td class="num">${usd(b.split, 2)}</td><td class="num">${usd(b.module, 2)}</td><td class="num"><b>${usd(b.material, 2)}</b></td>
+      <td>${b.in_family ? modsOf(b.model).map(m => chip(modName(m))).join(' ') : ''}</td></tr>`; };
+  const mb = P.make_buy, made = mb.find(r => r.how === 'MADE'), bought = made && mb.find(r => r.how === 'BOUGHT' && r.model === made.model);
+  const units = DATA.products.products.filter(p => made && p.site === made.site && mb.some(r => r.how === 'MADE' && r.model === p.model)).reduce((a, p) => a + p.units, 0);
+  const other = P.builds.find(b => !b.in_family);
+  const otherShared = other ? P.slots.filter(s => s.cells[other.key] && s.variants.find(v => v.key === s.cells[other.key].v).in_family).length : 0;
+  return `<h1>Platform view</h1>
+  <p class="sub">Once every BOM line is tied to a part, the same links show the product platform: which parts every ${esc(fam.name)} model shares, what each model adds, and where the two plants build the same thing with different parts. This is the first step toward platforming, read from the data with no extra input.</p>
+  <div class="tiles">
+    ${tile('Part numbers in the family', S.part_numbers, `${S.parts} distinct parts across two plants, doing ${S.slots} jobs in the product`)}
+    ${tile('Common core today', S.core + ' of ' + (S.core + S.split) + ' core jobs', `one part in every build. ${usd(coreLo, 2)} to ${usd(coreHi, 2)} per unit`, true)}
+    ${tile('One review away from core', S.core_review + ' jobs', `near-identical parts by plant. ${usd(S.review_saving)} a year across ${S.review_slots} reviews, already counted on the Opportunities page`)}
+    ${tile('Add-on modules', P.modules.length, `groups of parts that travel with the same models. ${S.apart_slots} jobs must keep separate parts`)}
+  </div>
+  <div class="card"><h2>What a common platform would take</h2>
+    <div class="flow step">${chip('1')} <span><b>Lock the core.</b> ${S.core} jobs already use one part in every ${esc(fam.name)} build at both plants.</span></div>
+    <div class="flow step">${chip('2')} <span><b>Close the plant gaps.</b> ${S.core_review} more core jobs differ only because Dayton and El Paso buy near-identical parts (${split.filter(s => s.kinds.includes('REVIEW')).map(s => esc(s.name.split(',')[0].toLowerCase())).join(', ')}). Engineering approval would lift the common core from ${S.core} to ${S.core + S.core_review} jobs.</span></div>
+    ${made && bought ? `<div class="flow step">${chip('3')} <span><b>Decide make or buy once.</b> The heater is assembled in house at ${esc(made.site)} and bought complete at ${esc(bought.site)}. See the full-cost comparison below.</span></div>` : ''}
+    <div class="flow step">${chip('4')} <span><b>Leave the rest alone.</b> ${split.filter(s => s.kinds.includes('BY_MODEL')).map(s => esc(s.name.split(',')[0])).join(' and ')} differ by model by design, and ${S.apart_slots} jobs differ on wattage or wire count, which must not be merged.</span></div>
+  </div>
+  <div class="card"><h2>Material cost per unit: core, shared jobs and modules</h2>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Common core (one part everywhere)</span><span><i style="background:var(--s2)"></i>Core job, more than one part today</span><span><i style="background:var(--s3)"></i>Add-on modules</span></div>
+    <table><thead><tr><th>Product</th><th>Plant</th><th></th><th class="num">Core</th><th class="num">Core job, 2+ parts</th><th class="num">Modules</th><th class="num">Material</th><th>Modules in this model</th></tr></thead>
+    <tbody>${P.builds.map(stack).join('')}</tbody></table>
+  </div>
+  <div class="card"><h2>Which part does each job, build by build</h2>
+    <p class="h2sub">A filled dot means the same part everywhere. Letters mark different parts doing the same job: the same letter is the same part. A hollow dot is another size of the part, outside the family. Hover a cell for the part numbers and cost.</p>
+    <table class="matrix"><thead><tr><th>Job in the product</th>${cols.map(k => `<th class="ctr${fam.others.includes(k) ? ' ref' : ''}">${esc(bl(k).model)}<div class="small" style="font-weight:400">${esc(bl(k).site)}</div></th>`).join('')}<th class="num">Cost / unit</th><th>What stands between this and one part</th></tr></thead><tbody>
+    ${group('Common core', 'the same part in every build of the family', core)}
+    ${group('Core job, more than one part today', 'every build needs it, but the part differs by plant or model', split)}
+    ${P.modules.map(m => group('Module: ' + modName(m), 'used by ' + andList(m.models.map(esc)), m.slots.map(id => slotById[id]))).join('')}
+    </tbody></table>
+    ${other ? `<div class="muted small" style="margin-top:8px">${esc(other.model)} is shown for comparison. It shares ${otherShared} of its ${other.family_parts} parts and assemblies with the ${esc(fam.name)} family; the rest are 5-cup sizes of the same jobs.</div>` : ''}
+  </div>
+  ${made && bought ? `<div class="card"><h2>Make or buy: the heater assembly on a full-cost basis</h2>
+    <p class="h2sub">On purchased material alone, making looks ${usd(bought.material - made.material, 2)} per unit cheaper. Adding the plant's own labor and overhead standards for the sub-assembly step reverses it.</p>
+    ${tableOf([{h:'Assembly', f:r=>esc(r.name)},{h:'Plant', f:r=>esc(r.site)},{h:'Model', f:r=>esc(r.model)},{h:'How', f:r=>r.how === 'MADE' ? `Made in house from ${r.parts} parts` : `Bought complete${r.changed ? ' since ' + esc(r.changed) : ''}`},
+      {h:'Material', num:1, f:r=>usd(r.material, 2)},{h:'Labor', num:1, f:r=>r.labor ? usd(r.labor, 2) : '–'},{h:'Overhead', num:1, f:r=>r.overhead ? usd(r.overhead, 2) : '–'},{h:'Full cost', num:1, f:r=>`<b>${usd(r.full, 2)}</b>`}], mb)}
+    <div class="caution small"><b>A question for finance, not a counted saving.</b> At full cost, buying is ${usd(made.full - bought.full, 2)} per unit cheaper than making at ${esc(made.site)}, about ${usd((made.full - bought.full) * units)} a year on ${num(units)} units. Overhead is an allocation and may not go away if the line closes, so this number is kept out of the savings totals.</div>
+  </div>` : ''}`;
+}
+
+// =============================================================================================
+// Test results (uses the answer key; a real client has none)
+// =============================================================================================
+function pageScore() {
+  const s = DATA.scorecard;
+  if (!s || s.partial) return `<h1>Test results</h1><p class="sub">Run <code>python3 score.py &lt;data folder&gt;</code> to score the tool against the answer key and show the results here.</p>`;
+  const frac = (a, b) => `${num(a)} of ${num(b)}`;
+  const m = s.money, p = s.parts;
+  const rowsT = [
+    ['PO lines tied to the right part', frac(s.po_lines.right_part, s.po_lines.lines), `${s.po_lines.wrong_part} wrong. The other ${s.po_lines.rolled_up_by_design} are old two-piece lid parts rolled up to the new lid on purpose`],
+    ['Invoice lines tied to the right part', frac(s.invoice_lines.right_part, s.invoice_lines.lines), `${s.invoice_lines.wrong_part} wrong`],
+    ['Spend purpose (production, spare, warranty, non-product)', frac(s.po_lines.right_purpose, s.po_lines.lines), 'Lines with no stated purpose are reported as unknown, not guessed'],
+    ['Same part at both plants under unrelated numbers', frac(p.cross_plant_same_part.found, p.cross_plant_same_part.planted), `${p.cross_plant_same_part.wrongly_merged} wrongly merged`],
+    ['Duplicate numbers inside one plant', frac(p.duplicate_numbers.found, p.duplicate_numbers.planted), ''],
+    ['Close-spec parts sent to engineering review', frac(p.close_spec.found, p.close_spec.planted), ''],
+    ['Look-alikes kept apart', frac(p.do_not_merge.found, p.do_not_merge.planted), 'Including the 229 C fuse the old cross-reference wrongly links'],
+    ['Consolidation savings', `${usd(m.consolidation_savings.found)} found`, `${usd(m.consolidation_savings.planted)} planted`],
+    ['Invoiced above quote', `${usd(m.quote_leakage.found)} found`, `${usd(m.quote_leakage.planted)} planted. ${m.quote_leakage.note}`],
+    ['Across-the-board supplier increase', `${usd(m.across_the_board_increase_found)} found`, 'Kept separate from part-by-part leakage, for a contract check'],
+  ];
+  return `<h1>Test results</h1>
+  <p class="sub">We wrote the demo data, so we hold an answer key: the true part behind every line and the savings planted in it. The tool never reads the key. This page scores the tool's output against it. A real client has no answer key, which is why every link also shows its reason and confidence.</p>
+  <div class="tiles">
+    ${tile('Spend tied to a part', pct(m.tool_linked_share), 'plain match: ' + pct(m.plain_join_share), true)}
+    ${tile('Lines tied to the wrong part', s.po_lines.wrong_part + s.invoice_lines.wrong_part, 'of ' + num(s.po_lines.lines + s.invoice_lines.lines) + ' PO and invoice lines')}
+    ${tile('Planted savings found', pct(Math.min(1, m.consolidation_savings.found / m.consolidation_savings.planted), 0), usd(m.consolidation_savings.found) + ' of ' + usd(m.consolidation_savings.planted))}
+    ${tile('Run time', s.build_seconds + ' s', 'raw files to results')}
+  </div>
+  <div class="card">${tableOf([{h:'Test', f:r=>`<b>${r[0]}</b>`},{h:'Result', f:r=>r[1]},{h:'Note', f:r=>`<span class="muted">${esc(r[2])}</span>`}], rowsT)}</div>
+  <div class="card"><h2>Material cost per unit against the key</h2>
+    ${tableOf([{h:'Product', f:r=>esc(r.model)},{h:'Plant', f:r=>esc(r.site)},{h:'Tether', num:1, f:r=>usd(r.tool,3)},{h:'Answer key', num:1, f:r=>usd(r.key,3)},{h:'Note', f:r=>r.lines_without_price ? 'One BOM line (rating label) has no unit conversion on file. Tether flags it instead of guessing' : 'Match'}], s.material_cost_per_unit)}</div>
+  <div class="caution"><b>Read this as an upper bound.</b> The matching rules and the abbreviation list were written while looking at this dataset, and the data is cleaner than a real client's. On real files the rules need tuning in the first days, and the review queue will be longer.</div>`;
+}
+
+// =============================================================================================
+const pages = {start: pageStart, load: pageLoad, health: pageHealth, cost: pageCost, opps: pageOpps, watch: pageWatch, platform: pagePlatform, score: pageScore};
+function render(keepScroll) {
+  const y = scrollY, dy = $('.detail')?.scrollTop, ly = $('.opplist')?.scrollTop;
+  $('#page').innerHTML = pages[state.page]();
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.page === state.page));
+  if (keepScroll) { scrollTo(0, y); if ($('.opplist') && ly != null) $('.opplist').scrollTop = ly; if ($('.detail') && dy != null && keepScroll === 'detail') $('.detail').scrollTop = dy; } else scrollTo(0, 0);
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-goto],[data-page],[data-opp],[data-dec],[data-tab],[data-product],[data-link],#export');
+  if (!t) return;
+  if (t.id === 'export') return exportCsv();
+  if (t.dataset.goto) { const [pg, ty] = t.dataset.goto.split(':'); state.page = pg; if (ty) { state.type = ty; state.ready = 'ALL'; state.q = ''; state.tab = 'list'; state.opp = null; } return render(); }
+  if (t.dataset.page) { state.page = t.dataset.page; return render(); }
+  if (t.dataset.dec) { decisions[state.opp] = decisions[state.opp] === t.dataset.dec ? undefined : t.dataset.dec; store.set('decisions', decisions); return render('detail'); }
+  if (t.dataset.link) { linkDecisions[t.dataset.link] = linkDecisions[t.dataset.link] === t.dataset.v ? undefined : t.dataset.v; store.set('links', linkDecisions); return render(true); }
+  if (t.dataset.opp) { state.opp = t.dataset.opp; return render(true); }
+  if (t.dataset.tab) { state.tab = t.dataset.tab; return render(true); }
+  if (t.dataset.product) { state.product = +t.dataset.product; return render(true); }
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'f-type') { state.type = e.target.value; render(true); }
+  if (e.target.id === 'f-ready') { state.ready = e.target.value; render(true); }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'f-q') { state.q = e.target.value; render(true); const i = $('#f-q'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+});
+$('#foot').innerHTML = `${DATA.meta.sites.join(' · ')}<br>${DATA.meta.period}<br>${usdk(DATA.meta.total_spend)} invoiced`;
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+family_id,standard_part,standard_canonical,lookalike_part,lookalike_canonical,why_they_differ,trap
+FAM-03,22-1113-00 / ,CP-0029, / THM00346,CP-0031,"Trips at 229 C, not 216 C. Looks identical. Used only on the 1000 W thermal model. A safety-critical difference",The 2023 legacy cross-reference wrongly maps the Dayton 216 C fuse to this part
+FAM-08,20-1436-00 / HTG00234,CP-0026, / HTG00249,CP-0027,"1000 W, not 900 W. Same tube shape and mounting. Used only on the thermal model",Descriptions differ by one token
+FAM-09,24-1354-00 / CRD00322,CP-0044, / CRD00338,CP-0045,"7 leads, not 8: no warming plate lead. Descriptions are nearly identical",Descriptions differ by one token

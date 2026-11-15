@@ -1,0 +1,88 @@
+Top Model,Lvl,Seq,Part (indented),Description,Qty Per Parent,UM,Source,Eff Date
+FGS00387,1,10,.PLS00262,BL12 PP Black hsg,1,Each,Buy,07/01/2023
+FGS00387,1,20,.PLS00317,12-Cup PP Black base plt,1,Each,Buy,07/01/2023
+FGS00387,1,30,.PLS00339,12-Cup PP Clear water tank,1,Each,Buy,07/01/2023
+FGS00387,1,40,.PLS00346,12-Cup PP Black tank lid,1,Each,Buy,07/01/2023
+FGS00387,1,50,.PLS00364,12-Cup PP Black filter bskt,1,Each,Buy,07/01/2023
+FGS00387,1,60,.PLS00412,PP Black 9-Hole showerhead,1,Each,Buy,07/01/2023
+FGS00387,1,70,.GLS00182,12-Cup Glass Black Handle carafe,1,Each,Buy,07/01/2023
+FGS00387,1,80,.PLS00383,12-Cup PP Black One-Piece carafe lid,1,Each,Buy,07/01/2023
+FGS00387,1,90,.MTL00368,12-Cup Steel Non-Stick warm plt,1,Each,Buy,07/01/2023
+FGS00387,1,100,.ASM00139,900W With Thermostat And Fuses heater assy,1,Each,Buy,05/01/2026
+FGS00387,2,110,..HTG00234,900W 120V Aluminum Tube U-Shape htg element,1,Each,Reference,05/01/2026
+FGS00387,2,120,..THM00315,Bimetal 105C NC 10A t-stat,1,Each,Reference,05/01/2026
+FGS00387,2,130,..THM00339,216C 10A Axial thermal fuse,2,Each,Reference,05/01/2026
+FGS00387,2,140,..MTL00373,Steel ZP htr brkt,1,Each,Reference,05/01/2026
+FGS00387,1,150,.RBR00212,8mm Id 1.6mm Wall Translucent silicone tubing,0.36,Meter,Buy,07/01/2023
+FGS00387,1,160,.RBR00496,8mm Silicone Duckbill chk valve,1,Each,Buy,07/01/2023
+FGS00387,1,170,.FST00267,Spring 12mm ZP hose clamp,4,Each,Buy,07/01/2023
+FGS00387,1,180,.CRD00300,2-Prong SPT-2 18AWG 1.0M Black pwr cord,1,Each,Buy,07/01/2023
+FGS00387,1,190,.ELC00374,SPST 16A Red LED rocker sw,1,Each,Buy,07/01/2023
+FGS00387,1,200,.CRD00305,Switch Models 5-Wire harness,1,Each,Buy,07/01/2023
+FGS00387,1,210,.FST00276,M3X10 ZP PH tapping screw,10,Each,Buy,07/01/2023
+FGS00387,1,220,.FST00301,M4X12 ZP PH tapping screw,4,Each,Buy,07/01/2023
+FGS00387,1,230,.RBR00261,12.5mm Black Adhesive rubber foot,4,Each,Buy,07/01/2023
+FGS00387,1,240,.PKG00190,BL12 4-Color E-Flute gift box,1,Each,Buy,07/01/2023
+FGS00387,1,250,.PKG00167,12-Cup Molded Fiber pulp tray,1,Each,Buy,07/01/2023
+FGS00387,1,260,.PRT00165,Switch Models EN ES FR manual,1,Each,Buy,07/01/2023
+FGS00387,1,270,.PRT00187,Silver PET UL Mark rating label,1,Each,Buy,07/01/2023
+FGS00387,1,280,.PKG00253,LDPE 400X500mm polybag,1,Each,Buy,07/01/2023
+FGS00387,1,290,.PKG00260,Holds 4 12-Cup ECT-29 master ctn,0.25,Each,Buy,07/01/2023
+FGS00391,1,10,.PLS00279,BL12P PP Black hsg,1,Each,Buy,07/01/2023
+FGS00391,1,20,.PLS00317,12-Cup PP Black base plt,1,Each,Buy,07/01/2023
+FGS00391,1,30,.PLS00339,12-Cup PP Clear water tank,1,Each,Buy,07/01/2023
+FGS00391,1,40,.PLS00346,12-Cup PP Black tank lid,1,Each,Buy,07/01/2023
+FGS00391,1,50,.PLS00364,12-Cup PP Black filter bskt,1,Each,Buy,07/01/2023
+FGS00391,1,60,.PLS00412,PP Black 9-Hole showerhead,1,Each,Buy,07/01/2023
+FGS00391,1,70,.GLS00254,12-Cup Glass Black Handle carafe,1,Each,Buy,07/01/2023
+FGS00391,1,80,.PLS00383,12-Cup PP Black One-Piece carafe lid,1,Each,Buy,07/01/2023
+FGS00391,1,90,.MTL00368,12-Cup Steel Non-Stick warm plt,1,Each,Buy,07/01/2023
+FGS00391,1,100,.ASM00139,900W With Thermostat And Fuses heater assy,1,Each,Buy,05/01/2026
+FGS00391,2,110,..HTG00234,900W 120V Aluminum Tube U-Shape htg element,1,Each,Reference,05/01/2026
+FGS00391,2,120,..THM00315,Bimetal 105C NC 10A t-stat,1,Each,Reference,05/01/2026
+FGS00391,2,130,..THM00339,216C 10A Axial thermal fuse,2,Each,Reference,05/01/2026
+FGS00391,2,140,..MTL00373,Steel ZP htr brkt,1,Each,Reference,05/01/2026
+FGS00391,1,150,.RBR00212,8mm Id 1.6mm Wall Translucent silicone tubing,0.36,Meter,Buy,07/01/2023
+FGS00391,1,160,.RBR00496,8mm Silicone Duckbill chk valve,1,Each,Buy,07/01/2023
+FGS00391,1,170,.FST00267,Spring 12mm ZP hose clamp,4,Each,Buy,07/01/2023
+FGS00391,1,180,.CRD00300,2-Prong SPT-2 18AWG 1.0M Black pwr cord,1,Each,Buy,07/01/2023
+FGS00391,1,190,.ELC00382,Programmable LCD Clock Timer ctrl board,1,Each,Buy,07/01/2023
+FGS00391,1,200,.ELC00400,5-Button Adhesive keypad,1,Each,Buy,07/01/2023
+FGS00391,1,210,.CRD00322,Programmable 8-Wire harness,1,Each,Buy,07/01/2023
+FGS00391,1,220,.FST00276,M3X10 ZP PH tapping screw,10,Each,Buy,07/01/2023
+FGS00391,1,230,.FST00301,M4X12 ZP PH tapping screw,4,Each,Buy,07/01/2023
+FGS00391,1,240,.RBR00261,12.5mm Black Adhesive rubber foot,4,Each,Buy,07/01/2023
+FGS00391,1,250,.PKG00216,BL12P 4-Color E-Flute gift box,1,Each,Buy,07/01/2023
+FGS00391,1,260,.PKG00167,12-Cup Molded Fiber pulp tray,1,Each,Buy,07/01/2023
+FGS00391,1,270,.PRT00185,Programmable EN ES FR manual,1,Each,Buy,07/01/2023
+FGS00391,1,280,.PRT00187,Silver PET UL Mark rating label,1,Each,Buy,07/01/2023
+FGS00391,1,290,.PKG00253,LDPE 400X500mm polybag,1,Each,Buy,07/01/2023
+FGS00391,1,300,.PKG00260,Holds 4 12-Cup ECT-29 master ctn,0.25,Each,Buy,07/01/2023
+FGS00410,1,10,.PLS00296,BL12T PP Black hsg,1,Each,Buy,07/01/2023
+FGS00410,1,20,.PLS00317,12-Cup PP Black base plt,1,Each,Buy,07/01/2023
+FGS00410,1,30,.PLS00339,12-Cup PP Clear water tank,1,Each,Buy,07/01/2023
+FGS00410,1,40,.PLS00346,12-Cup PP Black tank lid,1,Each,Buy,07/01/2023
+FGS00410,1,50,.PLS00364,12-Cup PP Black filter bskt,1,Each,Buy,07/01/2023
+FGS00410,1,60,.PLS00412,PP Black 9-Hole showerhead,1,Each,Buy,07/01/2023
+FGS00410,1,70,.DRK00162,12-Cup Stainless Double Wall With Lid thermal carafe,1,Each,Buy,07/01/2023
+FGS00410,1,80,.ASM00168,1000W With Thermostat And Fuses heater assy,1,Each,Buy,05/01/2026
+FGS00410,2,90,..HTG00249,1000W 120V Aluminum Tube U-Shape htg element,1,Each,Reference,05/01/2026
+FGS00410,2,100,..THM00315,Bimetal 105C NC 10A t-stat,1,Each,Reference,05/01/2026
+FGS00410,2,110,..THM00346,229C 10A Axial thermal fuse,2,Each,Reference,05/01/2026
+FGS00410,2,120,..MTL00373,Steel ZP htr brkt,1,Each,Reference,05/01/2026
+FGS00410,1,130,.RBR00212,8mm Id 1.6mm Wall Translucent silicone tubing,0.36,Meter,Buy,07/01/2023
+FGS00410,1,140,.RBR00496,8mm Silicone Duckbill chk valve,1,Each,Buy,07/01/2023
+FGS00410,1,150,.FST00267,Spring 12mm ZP hose clamp,4,Each,Buy,07/01/2023
+FGS00410,1,160,.CRD00300,2-Prong SPT-2 18AWG 1.0M Black pwr cord,1,Each,Buy,07/01/2023
+FGS00410,1,170,.ELC00382,Programmable LCD Clock Timer ctrl board,1,Each,Buy,07/01/2023
+FGS00410,1,180,.ELC00400,5-Button Adhesive keypad,1,Each,Buy,07/01/2023
+FGS00410,1,190,.CRD00338,Programmable 7-Wire No Plate Lead harness,1,Each,Buy,07/01/2023
+FGS00410,1,200,.FST00276,M3X10 ZP PH tapping screw,10,Each,Buy,07/01/2023
+FGS00410,1,210,.FST00301,M4X12 ZP PH tapping screw,4,Each,Buy,07/01/2023
+FGS00410,1,220,.RBR00261,12.5mm Black Adhesive rubber foot,4,Each,Buy,07/01/2023
+FGS00410,1,230,.PKG00244,BL12T 4-Color E-Flute gift box,1,Each,Buy,07/01/2023
+FGS00410,1,240,.PKG00167,12-Cup Molded Fiber pulp tray,1,Each,Buy,07/01/2023
+FGS00410,1,250,.PRT00185,Programmable EN ES FR manual,1,Each,Buy,07/01/2023
+FGS00410,1,260,.PRT00187,Silver PET UL Mark rating label,1,Each,Buy,07/01/2023
+FGS00410,1,270,.PKG00253,LDPE 400X500mm polybag,1,Each,Buy,07/01/2023
+FGS00410,1,280,.PKG00260,Holds 4 12-Cup ECT-29 master ctn,0.25,Each,Buy,07/01/2023

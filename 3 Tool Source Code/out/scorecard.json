@@ -1,0 +1,110 @@
+{
+  "build_seconds": 4.3,
+  "po_lines": {
+    "lines": 1481,
+    "right_part": 1477,
+    "rolled_up_by_design": 4,
+    "wrong_part": 0,
+    "right_purpose": 1481
+  },
+  "invoice_lines": {
+    "lines": 1941,
+    "right_part": 1937,
+    "rolled_up_by_design": 4,
+    "wrong_part": 0,
+    "right_purpose": 1941
+  },
+  "parts": {
+    "cross_plant_same_part": {
+      "planted": 27,
+      "found": 27,
+      "wrongly_merged": 0
+    },
+    "duplicate_numbers": {
+      "found": 2,
+      "planted": 2
+    },
+    "close_spec": {
+      "found": 7,
+      "planted": 7
+    },
+    "do_not_merge": {
+      "found": 3,
+      "planted": 3
+    },
+    "legacy_crossref_errors_flagged": 1
+  },
+  "money": {
+    "invoiced_spend": 7142785,
+    "plain_join_share": 0.8623,
+    "tool_linked_share": 0.9541,
+    "consolidation_savings": {
+      "planted": 221928,
+      "found": 221942,
+      "of_which_needs_review_planted": 30617,
+      "of_which_needs_review_found": 29202
+    },
+    "quote_leakage": {
+      "planted": 36580,
+      "found": 37357,
+      "note": "The key counts from March 2026; the tool counts every invoice above quote"
+    },
+    "across_the_board_increase_found": 30407,
+    "spend_with_unqualified_suppliers": {
+      "found": 501274
+    },
+    "air_freight_already_spent": {
+      "found": 36002
+    }
+  },
+  "material_cost_per_unit": [
+    {
+      "site": "Dayton",
+      "model": "BL-5",
+      "tool": 12.948,
+      "key": 13.027,
+      "lines_without_price": 1
+    },
+    {
+      "site": "Dayton",
+      "model": "BL-12",
+      "tool": 15.845,
+      "key": 15.856,
+      "lines_without_price": 1
+    },
+    {
+      "site": "Dayton",
+      "model": "BL-12P",
+      "tool": 19.339,
+      "key": 19.351,
+      "lines_without_price": 1
+    },
+    {
+      "site": "El Paso",
+      "model": "BL-12",
+      "tool": 16.74,
+      "key": 16.74,
+      "lines_without_price": 0
+    },
+    {
+      "site": "El Paso",
+      "model": "BL-12P",
+      "tool": 20.505,
+      "key": 20.506,
+      "lines_without_price": 0
+    },
+    {
+      "site": "El Paso",
+      "model": "BL-12T",
+      "tool": 24.762,
+      "key": 24.762,
+      "lines_without_price": 0
+    }
+  ],
+  "watchlist": {
+    "open_orders": 59,
+    "on_superseded_numbers": 2,
+    "confirmed_14_days_late": 9,
+    "under_an_open_notice": 14
+  }
+}

@@ -1,0 +1,27 @@
+SUPPLIER_ID,SUPPLIER_NAME,PARENT_GROUP,SUPPLIER_TYPE,STATE,ISO_9001,ISO_14001,OTHER_CERTS,CAPABILITIES,APPROVAL_STATUS
+200186,MIAMI VALLEY MOLDING,,Manufacturer,OH,Y,Y,NSF/ANSI 51,Injection molding 80-650 t; food-contact PP; tool maintenance,APPROVED
+200198,SUNBELT PLASTICS,,Manufacturer,TX,Y,N,NSF/ANSI 51,Injection molding 120-450 t; food-contact PP,APPROVED
+200258,TRES RIOS MOLDING,,Manufacturer,TX,N,N,,Injection molding 90-300 t; no food-contact certification,NOT QUALIFIED
+200299,EMBERLINE HEATING ELEMENTS,,Manufacturer,TN,Y,Y,UL,Tubular and cast-in heating elements; brazing,APPROVED
+200375,HOTWIRE COMPONENTS,,Manufacturer,TX,Y,N,UL,Heating elements; heater sub-assembly with thermostat and fuses,APPROVED
+200438,THERMOTEK CONTROLS,Thermotek Group,Manufacturer,OH,Y,Y,UL; CSA,Bimetal thermostats; thermal fuses,APPROVED
+200461,SUNFUSE DEVICES,,Manufacturer,CA,Y,N,UL,Thermal fuses and cutoffs,APPROVED
+200529,ALLIED INDUSTRIAL SUPPLY,,Distributor,IL,Y,N,,"Distribution: fasteners, electrical components, MRO",APPROVED
+200540,BUCKEYE WIRE & CABLE,,Manufacturer,OH,Y,N,UL,Power cords; wire harnesses; overmolding,APPROVED
+200597,RIO GRANDE CABLE ASSEMBLIES,,Manufacturer,TX,Y,N,UL,Power cords; wire harnesses,APPROVED
+200666,LONE STAR CORDSETS,,Manufacturer,TX,N,N,,Power cords; UL file pending,NOT QUALIFIED
+200749,CIRCUITLINE EMS,,Manufacturer,IL,Y,Y,UL; IPC-A-610,PCB assembly; switches and keypads sourcing; functional test,APPROVED
+200784,PASO ELECTRONICS ASSEMBLY,,Manufacturer,TX,Y,N,UL,PCB assembly; box build,APPROVED
+200867,CRYSTAL RIVER GLASSWORKS,,Manufacturer,WV,Y,N,FDA,Borosilicate blow molding; handle assembly,APPROVED
+200937,VIDRIO NORTE GLASS,,Importer,TX,Y,N,FDA,Imported borosilicate carafes; ocean freight via Houston,APPROVED
+200975,STAMPWELL METAL PRODUCTS,,Manufacturer,OH,Y,N,,Progressive die stamping; non-stick coating,APPROVED
+201010,MESA METAL STAMPING,,Manufacturer,TX,Y,N,,Stamping; zinc plating outsourced,APPROVED
+201054,ELASTOFLEX SILICONE,,Manufacturer,OH,Y,N,FDA,Silicone extrusion and molding; food-grade compounds,APPROVED
+201107,GULF RUBBER PRODUCTS,,Manufacturer,TX,Y,N,FDA,Silicone and rubber extrusion; die cutting,APPROVED
+201186,GREAT MIAMI FASTENER,,Distributor,OH,Y,N,,Fastener distribution; vendor-managed inventory,APPROVED
+201273,DAYTON CORRUGATED,,Manufacturer,OH,Y,N,FSC,Corrugated boxes; 4-color litho lamination; molded fiber,APPROVED
+201285,SOUTHWEST BOX & LABEL,,Manufacturer,TX,Y,N,,Corrugated boxes; packaging kits,APPROVED
+201354,PRINTWORKS LABEL & MANUAL,,Manufacturer,KY,Y,N,UL label printer,Manuals; rating labels,APPROVED
+201365,FREIGHTLINE LOGISTICS,,Service,IL,N,N,,"LTL, truckload and air freight",APPROVED
+201389,SAFEMARK TESTING LABORATORIES,,Service,IL,Y,N,ISO/IEC 17025,Electrical safety and food-contact testing,APPROVED
+201472,PRECISION MOLD SERVICE,,Service,OH,N,N,,Injection mold repair and maintenance,APPROVED

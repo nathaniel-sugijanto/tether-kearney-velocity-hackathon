@@ -1,0 +1,11 @@
+plant,item,applies_to,operation,std_minutes_per_unit,labor_rate_usd_per_hour,overhead_multiple_of_labor
+Dayton,90-1057-00,BL-5,"Final assembly, test and pack",4.5,24.0,1.5
+Dayton,90-1093-00,BL-12,"Final assembly, test and pack",5.0,24.0,1.5
+Dayton,90-1116-00,BL-12P,"Final assembly, test and pack",6.0,24.0,1.5
+Dayton,80-1081-00,Heater assembly 650 W,Heater sub-assembly,0.8,24.0,1.5
+Dayton,80-1094-00,Heater assembly 900 W,Heater sub-assembly,0.8,24.0,1.5
+El Paso,FGS00387,BL-12,"Final assembly, test and pack",5.0,19.0,1.4
+El Paso,FGS00391,BL-12P,"Final assembly, test and pack",6.0,19.0,1.4
+El Paso,FGS00410,BL-12T,"Final assembly, test and pack",6.5,19.0,1.4
+El Paso,ASM00139,Heater assembly 900 W,Heater sub-assembly (in house until 2026-04-30; bought complete since),0.8,19.0,1.4
+El Paso,ASM00168,Heater assembly 1000 W,Heater sub-assembly (in house until 2026-04-30; bought complete since),0.8,19.0,1.4

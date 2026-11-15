@@ -1,0 +1,36 @@
+plant,supplier_code,supplier_id,supplier_name,receipt_lines,on_time_pct,avg_days_late_when_late,avg_actual_lead_days,open_lines_at_period_end,open_lines_confirmed_14_or_more_days_late,note
+Dayton,MVMO,200186,Miami Valley Molding,260,84.2,8.0,25.4,10,2,Planted: reliable.
+Dayton,SUNB,200198,Sunbelt Plastics,196,76.0,7.6,23.9,2,0,
+Dayton,EMBR,200299,Emberline Heating Elements,31,96.8,1.0,32.2,2,0,Planted: reliable.
+Dayton,THRM,200438,Thermotek Controls,31,74.2,3.6,23.4,1,0,
+Dayton,ALLD,200529,Allied Industrial Supply,38,65.8,5.3,20.6,2,0,
+Dayton,BUCK,200540,Buckeye Wire & Cable,48,79.2,3.9,26.1,3,0,Planted: reliable.
+Dayton,RIOG,200597,Rio Grande Cable Assemblies,47,63.8,6.5,24.2,3,0,
+Dayton,CIRC,200749,Circuitline EMS,43,69.8,6.8,32.8,4,1,
+Dayton,CRYS,200867,Crystal River Glassworks,53,71.7,6.2,33.2,3,0,
+Dayton,STMP,200975,Stampwell Metal Products,47,72.3,6.8,24.7,1,1,
+Dayton,ELFX,201054,Elastoflex Silicone,31,87.1,12.0,15.6,0,0,
+Dayton,GMFA,201186,Great Miami Fastener,11,81.8,21.0,13.4,0,0,Planted: reliable.
+Dayton,DAYC,201273,Dayton Corrugated,90,78.9,8.2,15.4,0,0,
+Dayton,PRNT,201354,PrintWorks Label & Manual,19,73.7,9.4,15.1,0,0,
+El Paso,SUNB,V-20045,Sunbelt Plastics,149,75.2,9.4,25.0,4,1,
+El Paso,TRES,V-20072,Tres Rios Molding,138,28.3,8.7,25.0,3,0,Planted: promises short and delivers late. Also has no ISO 9001 and no food-contact certification.
+El Paso,EMBR,V-20092,Emberline Heating Elements,8,75.0,6.0,34.5,0,0,Planted: reliable.
+El Paso,HOTW,V-20093,Hotwire Components,26,65.4,11.9,28.0,2,0,
+El Paso,THRM,V-20117,Thermotek Controls,10,50.0,10.8,29.9,0,0,
+El Paso,SUNF,V-20142,Sunfuse Devices,6,50.0,5.3,26.2,0,0,
+El Paso,ALLD,V-20151,Allied Industrial Supply,23,65.2,9.0,18.3,0,0,
+El Paso,RIOG,V-20189,Rio Grande Cable Assemblies,43,83.7,6.7,22.7,2,0,
+El Paso,LONE,V-20193,Lone Star Cordsets,54,40.7,9.3,26.0,2,0,Planted: late more often than most. No ISO 9001.
+El Paso,CIRC,V-20205,Circuitline EMS,42,73.8,8.0,32.8,3,0,
+El Paso,PASO,V-20229,Paso Electronics Assembly,45,71.1,11.5,34.7,3,1,
+El Paso,CRYS,V-20242,Crystal River Glassworks,26,84.6,9.8,29.3,2,0,
+El Paso,VIDR,V-20244,Vidrio Norte Glass,16,68.8,5.0,31.3,3,3,"Planted: open orders from September 2026 are confirmed about 4 weeks late (lead time 4 to 8 weeks, notice PCN-2026-0095)."
+El Paso,STEE,V-20259,SteelBrew Vacuumware,19,68.4,3.7,48.3,2,0,
+El Paso,STMP,V-20261,Stampwell Metal Products,16,81.2,11.7,24.9,0,0,
+El Paso,MESA,V-20283,Mesa Metal Stamping,15,80.0,6.0,24.0,0,0,
+El Paso,GULF,V-20324,Gulf Rubber Products,29,58.6,10.0,18.3,2,0,
+El Paso,BORD,V-20372,Border Fastener Supply,8,75.0,1.5,9.0,0,0,
+El Paso,DAYC,V-20399,Dayton Corrugated,64,70.3,5.3,15.6,0,0,
+El Paso,SWBX,V-20400,Southwest Box & Label,76,68.4,5.9,15.5,0,0,
+El Paso,PRNT,V-20407,PrintWorks Label & Manual,14,85.7,5.0,12.9,0,0,

@@ -1,0 +1,81 @@
+claim_no,claim_date,plant,model,serial_no,part_ref,qty,parts_cost_usd,failure_mode,resolution
+WC-26000,2026-04-14,Dayton,BL-12P,BL5102553,"CARAFE, 12-CUP, GLASS, BLACK HANDLE",1,2.59,Carafe cracked on arrival,Unit replaced
+WC-26001,2026-05-12,El Paso,BL-12,BL5105850,HTG00234,1,2.01,Does not heat,Unit replaced
+WC-26002,2026-03-13,Dayton,BL-12P,BL5109735,30-1382-00,1,2.47,Carafe cracked on arrival,Part replaced
+WC-26003,2025-11-17,El Paso,BL-12,BL5111611,SPST 16A Red LED rocker sw,1,0.38,Switch or display dead,Refund
+WC-26004,2026-10-11,Dayton,BL-5,BL5115053,20-1430-00,1,1.7,Does not heat,Part replaced
+WC-26005,2026-09-22,Dayton,BL-5,BL5118617,30-1357-00,1,2.05,Carafe cracked on arrival,Unit replaced
+WC-26006,2026-09-02,Dayton,BL-5,BL5121276,"HEATING ELEMENT, 650W, 120V, ALUMINUM TUBE, U-SHAPE",1,1.61,Does not heat,Unit replaced
+WC-26007,2026-10-04,Dayton,BL-5,BL5124941,"SILICONE TUBE, 8MM ID, 1.5MM WALL, TRANSLUCENT",1,0.63,Leaks from base,Unit replaced
+WC-26008,2026-08-19,Dayton,BL-5,BL5125948,"ROCKER SWITCH, SPST, 10A, RED LED",1,0.33,Switch or display dead,Refund
+WC-26009,2026-05-01,Dayton,BL-12P,BL5127037,32-1035-00,1,0.64,Leaks from base,Refund
+WC-26010,2026-08-20,Dayton,BL-5,BL5130928,10-1215-00,1,0.23,Lid hinge broken,Unit replaced
+WC-26011,2026-05-23,Dayton,BL-12P,BL5133137,"HEATING ELEMENT, 900W, 120V, ALUMINUM TUBE, U-SHAPE",1,2.05,Does not heat,Unit replaced
+WC-26012,2026-09-11,Dayton,BL-12P,BL5137082,22-1091-00,1,0.28,Shuts off early,Refund
+WC-26013,2026-03-09,Dayton,BL-12,BL5137998,26-1380-00,1,0.33,Switch or display dead,Refund
+WC-26014,2026-02-13,Dayton,BL-12P,BL5138236,"THERMOSTAT, BIMETAL, 105C, NC, 10A",1,0.3,Shuts off early,Unit replaced
+WC-26015,2026-06-01,Dayton,BL-5,BL5142003,"CARAFE LID, 5-CUP, PP, BLACK, ONE-PIECE",1,0.23,Lid hinge broken,Refund
+WC-26016,2026-03-08,El Paso,BL-12P,BL5145622,HTG00234,1,2.13,Does not heat,Unit replaced
+WC-26017,2026-07-16,El Paso,BL-12P,BL5147827,ELC00382,1,3.37,Switch or display dead,Part replaced
+WC-26018,2026-07-19,Dayton,BL-12,BL5147910,32-1035-00,1,0.65,Leaks from base,Refund
+WC-26019,2026-07-07,Dayton,BL-12P,BL5150182,"CARAFE, 12-CUP, GLASS, BLACK HANDLE",1,2.52,Carafe cracked on arrival,Unit replaced
+WC-26020,2026-09-14,Dayton,BL-12,BL5151429,10-1333-00,1,0.27,Lid hinge broken,Part replaced
+WC-26021,2026-09-05,Dayton,BL-12P,BL5155091,30-1382-00,1,2.65,Carafe cracked on arrival,Unit replaced
+WC-26022,2025-11-05,Dayton,BL-12,BL5155526,22-1091-00,1,0.31,Shuts off early,Unit replaced
+WC-26023,2026-08-03,Dayton,BL-12P,BL5158417,26-1409-00,1,3.21,Switch or display dead,Part replaced
+WC-26024,2026-03-23,Dayton,BL-5,BL5161925,"HEATING ELEMENT, 650W, 120V, ALUMINUM TUBE, U-SHAPE",1,1.72,Does not heat,Unit replaced
+WC-26025,2026-09-06,El Paso,BL-12P,BL5164730,8mm Id 1.6mm Wall Translucent silicone tubing,1,0.7,Leaks from base,Refund
+WC-26026,2026-02-04,Dayton,BL-12,BL5167820,"ROCKER SWITCH, SPST, 10A, RED LED",1,0.32,Switch or display dead,Unit replaced
+WC-26027,2026-02-22,El Paso,BL-12,BL5171591,ELC00374,1,0.37,Switch or display dead,Unit replaced
+WC-26028,2026-04-17,El Paso,BL-12,BL5174494,THM00315,1,0.3,Shuts off early,Part replaced
+WC-26029,2026-07-07,El Paso,BL-12,BL5175523,SPST 16A Red LED rocker sw,1,0.39,Switch or display dead,Part replaced
+WC-26030,2026-08-11,Dayton,BL-5,BL5179042,10-1215-00,1,0.24,Lid hinge broken,Part replaced
+WC-26031,2026-05-21,El Paso,BL-12P,BL5181107,HTG00234,1,2.13,Does not heat,Unit replaced
+WC-26032,2026-08-23,El Paso,BL-12P,BL5181222,Bimetal 105C NC 10A t-stat,1,0.3,Shuts off early,Unit replaced
+WC-26033,2026-09-16,Dayton,BL-12P,BL5184287,"CARAFE LID, 12-CUP, PP, BLACK, ONE-PIECE",1,0.28,Lid hinge broken,Refund
+WC-26034,2026-05-01,El Paso,BL-12T,BL5185144,THM00315,1,0.3,Shuts off early,Refund
+WC-26035,2026-05-14,Dayton,BL-5,BL5188080,"CARAFE, 5-CUP, GLASS, BLACK HANDLE",1,2.03,Carafe cracked on arrival,Refund
+WC-26036,2026-09-10,Dayton,BL-12P,BL5189735,10-1333-00,1,0.26,Lid hinge broken,Part replaced
+WC-26037,2026-09-02,El Paso,BL-12P,BL5193502,12-Cup PP Black One-Piece carafe lid,1,0.27,Lid hinge broken,Unit replaced
+WC-26038,2026-06-09,El Paso,BL-12P,BL5197389,THM00315,1,0.29,Shuts off early,Unit replaced
+WC-26039,2026-08-05,Dayton,BL-5,BL5200013,22-1091-00,1,0.3,Shuts off early,Unit replaced
+WC-26040,2025-11-05,Dayton,BL-12P,BL5202742,"CARAFE LID, 12-CUP, PP, BLACK, ONE-PIECE",1,0.26,Lid hinge broken,Part replaced
+WC-26041,2026-06-23,El Paso,BL-12T,BL5203140,THM00315,1,0.3,Shuts off early,Unit replaced
+WC-26042,2026-03-13,Dayton,BL-12P,BL5205933,"CONTROL BOARD, PROGRAMMABLE, LCD, CLOCK/TIMER",1,3.16,Switch or display dead,Part replaced
+WC-26043,2025-11-23,El Paso,BL-12P,BL5208020,PLS00383,1,0.28,Lid hinge broken,Unit replaced
+WC-26044,2026-02-21,Dayton,BL-5,BL5211146,32-1035-00,1,0.66,Leaks from base,Part replaced
+WC-26045,2025-11-06,Dayton,BL-12P,BL5212308,10-1333-00,1,0.26,Lid hinge broken,Refund
+WC-26046,2025-11-16,El Paso,BL-12P,BL5213582,PLS00383,1,0.27,Lid hinge broken,Unit replaced
+WC-26047,2026-09-02,Dayton,BL-5,BL5216478,26-1380-00,1,0.34,Switch or display dead,Unit replaced
+WC-26048,2026-06-07,Dayton,BL-12,BL5219698,32-1035-00,1,0.64,Leaks from base,Unit replaced
+WC-26049,2026-06-02,Dayton,BL-12P,BL5223369,"SILICONE TUBE, 8MM ID, 1.5MM WALL, TRANSLUCENT",1,0.67,Leaks from base,Unit replaced
+WC-26050,2026-10-26,Dayton,BL-12,BL5224660,"CARAFE LID, 12-CUP, PP, BLACK, ONE-PIECE",1,0.26,Lid hinge broken,Unit replaced
+WC-26051,2026-01-15,Dayton,BL-12P,BL5227656,"THERMOSTAT, BIMETAL, 105C, NC, 10A",1,0.31,Shuts off early,Refund
+WC-26052,2025-11-12,El Paso,BL-12T,BL5228516,12-Cup Stainless Double Wall With Lid thermal carafe,1,8.33,Carafe cracked on arrival,Unit replaced
+WC-26053,2026-10-10,El Paso,BL-12P,BL5232236,12-Cup PP Black One-Piece carafe lid,1,0.26,Lid hinge broken,Unit replaced
+WC-26054,2026-09-07,Dayton,BL-5,BL5235181,"HEATING ELEMENT, 650W, 120V, ALUMINUM TUBE, U-SHAPE",1,1.63,Does not heat,Unit replaced
+WC-26055,2026-02-09,El Paso,BL-12P,BL5236181,Bimetal 105C NC 10A t-stat,1,0.3,Shuts off early,Part replaced
+WC-26056,2026-05-11,El Paso,BL-12P,BL5236329,12-Cup PP Black One-Piece carafe lid,1,0.27,Lid hinge broken,Unit replaced
+WC-26057,2026-04-04,Dayton,BL-12,BL5239122,"SILICONE TUBE, 8MM ID, 1.5MM WALL, TRANSLUCENT",1,0.67,Leaks from base,Refund
+WC-26058,2026-10-11,El Paso,BL-12T,BL5241357,DRK00162,1,8.32,Carafe cracked on arrival,Refund
+WC-26059,2025-11-23,Dayton,BL-12P,BL5241434,32-1035-00,1,0.67,Leaks from base,Refund
+WC-26060,2026-08-19,El Paso,BL-12T,BL5244111,DRK00162,1,8.44,Lid hinge broken,Refund
+WC-26061,2026-04-21,El Paso,BL-12,BL5244771,12-Cup Glass Black Handle carafe,1,2.59,Carafe cracked on arrival,Unit replaced
+WC-26062,2026-09-26,Dayton,BL-12P,BL5246598,"CARAFE LID, 12-CUP, PP, BLACK, ONE-PIECE",1,0.28,Lid hinge broken,Refund
+WC-26063,2025-12-13,Dayton,BL-5,BL5249074,22-1091-00,1,0.31,Shuts off early,Unit replaced
+WC-26064,2026-07-19,Dayton,BL-12P,BL5252329,26-1409-00,1,3.23,Switch or display dead,Unit replaced
+WC-26065,2026-06-06,Dayton,BL-12,BL5252765,"CARAFE, 12-CUP, GLASS, BLACK HANDLE",1,2.62,Carafe cracked on arrival,Part replaced
+WC-26066,2025-12-04,El Paso,BL-12,BL5255214,PLS00383,1,0.27,Lid hinge broken,Part replaced
+WC-26067,2025-12-27,El Paso,BL-12,BL5256959,RBR00212,1,0.69,Leaks from base,Unit replaced
+WC-26068,2026-06-11,El Paso,BL-12P,BL5259832,GLS00182,1,2.58,Carafe cracked on arrival,Part replaced
+WC-26069,2025-11-06,Dayton,BL-12P,BL5260379,30-1382-00,1,2.49,Carafe cracked on arrival,Unit replaced
+WC-26070,2026-08-06,Dayton,BL-5,BL5261994,"CARAFE LID, 5-CUP, PP, BLACK, ONE-PIECE",1,0.24,Lid hinge broken,Unit replaced
+WC-26071,2026-07-09,El Paso,BL-12T,BL5262107,Programmable LCD Clock Timer ctrl board,1,3.36,Switch or display dead,Refund
+WC-26072,2026-03-08,Dayton,BL-12P,BL5262775,"SILICONE TUBE, 8MM ID, 1.5MM WALL, TRANSLUCENT",1,0.64,Leaks from base,Part replaced
+WC-26073,2026-08-18,Dayton,BL-12P,BL5264323,10-1333-00,1,0.27,Lid hinge broken,Refund
+WC-26074,2026-09-27,Dayton,BL-12P,BL5266634,"HEATING ELEMENT, 900W, 120V, ALUMINUM TUBE, U-SHAPE",1,2.09,Does not heat,Unit replaced
+WC-26075,2026-02-08,El Paso,BL-12T,BL5266956,8mm Id 1.6mm Wall Translucent silicone tubing,1,0.69,Leaks from base,Unit replaced
+WC-26076,2025-12-04,Dayton,BL-12,BL5268286,"THERMOSTAT, BIMETAL, 105C, NC, 10A",1,0.3,Shuts off early,Part replaced
+WC-26077,2026-02-07,El Paso,BL-12P,BL5268935,8mm Id 1.6mm Wall Translucent silicone tubing,1,0.7,Leaks from base,Refund
+WC-26078,2026-07-16,Dayton,BL-12P,BL5272446,32-1035-00,1,0.63,Leaks from base,Refund
+WC-26079,2026-03-09,El Paso,BL-12T,BL5274294,12-Cup Stainless Double Wall With Lid thermal carafe,1,7.8,Lid hinge broken,Unit replaced

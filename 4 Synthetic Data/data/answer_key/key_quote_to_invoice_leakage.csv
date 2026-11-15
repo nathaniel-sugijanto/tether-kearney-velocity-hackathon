@@ -1,0 +1,5 @@
+canonical_id,canonical_key,dayton_item,supplier,awarded_quote_no,quoted_price,weighted_invoice_price_since_2026_03,qty_since_2026_03,paid_above_quote_usd,note
+CP-0002,HOUSING:BL-12,10-1085-00,Miami Valley Molding,Q-46249,2.4319,2.62887,48314.0,9516.17,"Includes the 4% resin surcharge from May 2026, which is on top of the leakage"
+CP-0017,CARAFE:12:GLASS,30-1382-00,Crystal River Glassworks,Q-40756,2.3897,2.53271,104125.0,14890.61,
+CP-0026,HEATER:900W,20-1436-00,Emberline Heating Elements,Q-77886,1.9636,2.04737,103408.0,8662.94,
+CP-0041,PCB:P1,26-1409-00,Circuitline EMS,Q-58939,3.1062,3.19872,37945.0,3510.78,
